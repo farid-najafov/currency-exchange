@@ -1,4 +1,4 @@
-package xe;
+package com.ibatech.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
