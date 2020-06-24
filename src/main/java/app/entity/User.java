@@ -1,15 +1,16 @@
-package entity;
+package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity(name = "users")
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
@@ -32,4 +33,11 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
     )
     Collection<Exchange> exchanges;
+
+    public User(String name, String password, String mail, Collection<Exchange> exchanges) {
+        this.name = name;
+        this.password = password;
+        this.mail = mail;
+        this.exchanges = exchanges;
+    }
 }
