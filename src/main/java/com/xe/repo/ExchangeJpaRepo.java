@@ -1,6 +1,6 @@
-package com.ibatech.app.repo;
+package com.xe.repo;
 
-import com.ibatech.app.entity.Exchange;
+import com.xe.entity.Exchange;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
-package com.ibatech.app.controller;
+package com.xe.controller;
 
-import com.ibatech.app.entity.Exchange;
-import com.ibatech.app.entity.User;
-import com.ibatech.app.repo.ExchangeJpaRepo;
-import com.ibatech.app.repo.UserJpaRepo;
+import com.xe.entity.Exchange;
+import com.xe.entity.User;
+import com.xe.repo.ExchangeJpaRepo;
+import com.xe.repo.UserJpaRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

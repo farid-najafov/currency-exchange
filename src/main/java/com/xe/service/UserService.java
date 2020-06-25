@@ -1,6 +1,6 @@
-package com.ibatech.app.service;
+package com.xe.service;
 
-import com.ibatech.app.entity.User;
+import com.xe.entity.User;
 
 public interface UserService {
     void addUser(User user);

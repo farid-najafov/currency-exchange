@@ -1,4 +1,4 @@
-package com.ibatech.app.validation;
+package com.xe.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

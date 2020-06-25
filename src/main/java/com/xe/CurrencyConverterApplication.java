@@ -1,4 +1,4 @@
-package com.ibatech.app;
+package com.xe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

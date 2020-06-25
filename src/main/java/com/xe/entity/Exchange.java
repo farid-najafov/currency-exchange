@@ -1,4 +1,4 @@
-package com.ibatech.app.entity;
+package com.xe.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

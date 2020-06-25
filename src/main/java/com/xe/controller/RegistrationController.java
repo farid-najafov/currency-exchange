@@ -1,7 +1,7 @@
-package com.ibatech.app.controller;
+package com.xe.controller;
 
-import com.ibatech.app.entity.User;
-import com.ibatech.app.service.UserService;
+import com.xe.entity.User;
+import com.xe.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;

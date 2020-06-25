@@ -1,9 +1,9 @@
-package com.ibatech.app.console;
+package com.xe.console;
 
-import com.ibatech.app.entity.Exchange;
-import com.ibatech.app.entity.User;
-import com.ibatech.app.repo.ExchangeJpaRepo;
-import com.ibatech.app.repo.UserJpaRepo;
+import com.xe.entity.Exchange;
+import com.xe.entity.User;
+import com.xe.repo.ExchangeJpaRepo;
+import com.xe.repo.UserJpaRepo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
