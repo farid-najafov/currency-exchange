@@ -1,8 +1,8 @@
-package com.ibatech.app.entity;
+package com.xe.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.ibatech.app.validation.FieldMatch;
-import com.ibatech.app.validation.ValidEmail;
+import com.xe.validation.FieldMatch;
+import com.xe.validation.ValidEmail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

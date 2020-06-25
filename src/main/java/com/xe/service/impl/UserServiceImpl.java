@@ -1,8 +1,8 @@
-package com.ibatech.app.service.impl;
+package com.xe.service.impl;
 
-import com.ibatech.app.entity.User;
-import com.ibatech.app.repo.UserRepository;
-import com.ibatech.app.service.UserService;
+import com.xe.entity.User;
+import com.xe.repo.UserRepository;
+import com.xe.service.UserService;
 import org.springframework.stereotype.Service;
 
 

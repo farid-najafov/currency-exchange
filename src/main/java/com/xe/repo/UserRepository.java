@@ -1,6 +1,6 @@
-package com.ibatech.app.repo;
+package com.xe.repo;
 
-import com.ibatech.app.entity.User;
+import com.xe.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
