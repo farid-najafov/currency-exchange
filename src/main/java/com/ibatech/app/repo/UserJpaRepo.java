@@ -1,7 +1,6 @@
-package app.repo;
+package com.ibatech.app.repo;
 
-import app.entity.Exchange;
-import app.entity.User;
+import com.ibatech.app.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

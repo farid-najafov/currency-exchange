@@ -1,9 +1,9 @@
-package app.console;
+package com.ibatech.app.console;
 
-import app.entity.Exchange;
-import app.entity.User;
-import app.repo.ExchangeJpaRepo;
-import app.repo.UserJpaRepo;
+import com.ibatech.app.entity.Exchange;
+import com.ibatech.app.entity.User;
+import com.ibatech.app.repo.ExchangeJpaRepo;
+import com.ibatech.app.repo.UserJpaRepo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -36,9 +36,9 @@ public class TestCommandRunner {
             as.add(new Exchange("12"));
             as.add(new Exchange("435"));
 
-            User user1 = new User("Ferid","123","f@mail.ru",f);
-            User user2 = new User("Aqil","231","aq@mail.ru",aq);
-            User user3 = new User("Samir","321","as@mail.ru",as);
+            User user1 = new User("Ferid","11111111","11111111","f@mail.ru",f);
+            User user2 = new User("Aqil","22222222","22222222","aq@mail.ru",aq);
+            User user3 = new User("Samir","33333333","33333333","as@mail.ru",as);
             userJpaRepo.saveAll(Arrays.asList(user1,user2,user3));
         };
     }
