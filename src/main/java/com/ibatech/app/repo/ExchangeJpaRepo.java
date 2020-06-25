@@ -1,7 +1,6 @@
-package app.repo;
+package com.ibatech.app.repo;
 
-import app.entity.Exchange;
-import org.hibernate.metamodel.model.convert.spi.JpaAttributeConverter;
+import com.ibatech.app.entity.Exchange;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
