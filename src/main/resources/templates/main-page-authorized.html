@@ -1,28 +1,29 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="css\main-page-authorized.css">
-    <link rel="stylesheet" href="css\custom-select.css">
+    <link rel="stylesheet" th:href="@{/css/main-page-authorized.css}">
+    <link rel="stylesheet" th:href="@{/css/custom-select.css}">
     <title>Exchange</title>
 </head>
 
 <body>
     <header class="main-header">
-        <a href="main-page.html" class="main-header-logo"><img src="img\iba-tech-logo-white.svg" alt="IBA Tech Academy"></a>
+        <a href="main-page.html" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
         <div class="main-header-wrapper">
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
-                    <span class="main-header-username">Anatolii Safronov</span>
+                    <span class="main-header-username"></span>
                     <div class="log-out-block">
-                        <img src="img\log-out-icon.svg" alt="Log out">
+                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
                         <a href="index.html" class="log-out-btn">Log out</a>
                     </div>
                 </div>
-                <img class="main-header-user-icon" src="img\user-icon-with-background.svg" alt="User Icon">
+                <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
             </div>
         </div>
     </header>
@@ -90,8 +91,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
-    <script src="js\currency-select.js"></script>
-    <script src="js\date-select.js"></script>
+    <script th:src="@{/js/currency-select.js}"></script>
+    <script th:src="@{/js/date-select.js}"></script>
 </body>
 
 
