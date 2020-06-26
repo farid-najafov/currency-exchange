@@ -19,5 +19,4 @@ public class MainPageController {
         log.info("GET -> /main-page");
         return "main-page";
     }
-
 }
