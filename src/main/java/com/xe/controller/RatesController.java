@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
-@RequestMapping("/main-page")
-public class MainPageController {
+@RequestMapping("/rates")
+public class RatesController {
 
-    private static String fmt(String format, Object... args) {
-        return String.format(format, args);
-    }
-
+    /**
+     * http://localhost:8081/rates
+     */
     @GetMapping
-    public String showMainPage() {
-        log.info("GET -> /main-page");
-        return "main-page";
+    public String showRates() {
+        log.info("GET -> /rates");
+        return "rates";
     }
 }

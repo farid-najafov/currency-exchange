@@ -7,16 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
-@RequestMapping("/main-page")
-public class MainPageController {
-
-    private static String fmt(String format, Object... args) {
-        return String.format(format, args);
-    }
+@RequestMapping("/main-page-authorized")
+public class MainPageAuthorizedController {
 
     @GetMapping
-    public String showMainPage() {
-        log.info("GET -> /main-page");
-        return "main-page";
+    public String showMainPageAuthorized() {
+        log.info("GET -> /main-page-authorized");
+        return "main-page-authorized";
     }
 }
