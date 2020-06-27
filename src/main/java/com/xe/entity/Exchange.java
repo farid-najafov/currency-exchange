@@ -21,8 +21,6 @@ public class Exchange {
     @Column(name = "time")
     private String time;
 
-//    @ManyToOne
-//    private User user;
     public Exchange(String time) {
         this.time = time;
     }

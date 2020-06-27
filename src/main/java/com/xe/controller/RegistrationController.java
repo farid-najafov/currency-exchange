@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Log4j2
 @Controller
@@ -26,12 +27,9 @@ public class RegistrationController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
-
 
     @GetMapping
     public String handle_get(Model model) {
@@ -43,23 +41,22 @@ public class RegistrationController {
     public String handle_post(
             @Valid @ModelAttribute("user") User user,
             BindingResult bindingResult,
-            Model theModel, RedirectAttributes redirectAttributes
-    ) {
+            Model model,
+            RedirectAttributes ra) {
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) return "registration";
+
+        Optional<User> byEmail = userService.findByEmail(user.getEmail());
+
+        if (byEmail.isPresent()) {
+            model.addAttribute("user", new User());
+            model.addAttribute("registrationError", "Email is already taken");
+            log.warn("Duplicate email");
             return "registration";
         }
 
-        final User email = userService.findByEmail(user.getEmail());
-
-        if (email != null) {
-            theModel.addAttribute("user", new User());
-            theModel.addAttribute("registrationError", "Email already exists.");
-            log.warn("Email already exists.");
-            return "registration";
-        }
         userService.addUser(user);
-        redirectAttributes.addFlashAttribute("success","Successfully registered");
+        ra.addFlashAttribute("success","Registration is successful, please log in to continue");
         log.info("Successfully registered");
 
         return "redirect:";

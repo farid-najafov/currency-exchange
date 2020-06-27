@@ -2,11 +2,11 @@ package com.xe.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.xe.validation.FieldMatch;
-import com.xe.validation.ValidEmail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -25,20 +25,23 @@ public class User {
     @Column(name = "user_id")
     private int id;
 
-    @NotNull(message = "Full Name cannot be null")
+    @NotNull(message = "Insert your full name")
     @Size(min = 1, message = "is required")
+    @Column(name = "fullname")
     private String fullName;
 
-    @NotNull(message = "Password cannot be null")
-    @Size(min = 1, message = "must greater than 8 digts")
+    @NotNull(message = "Set up a password")
+    @Size(min = 3, message = "must greater than 3 digits")
+    @Column(name = "password")
     private String password;
 
-    @NotNull(message = "Password cannot be null")
-    @Size(min = 1, message = "must greater than 8 digts")
+    @NotNull(message = "Set up a password")
+    @Size(min = 3, message = "must greater than 3 digits")
+    @Transient
     private String matchingPassword;
 
-//    @ValidEmail
-    @NotNull(message = "Email cannot be null")
+    @Email
+    @NotNull(message = "Insert your email")
     @Size(min = 1, message = "is required")
     private String email;
 
@@ -56,12 +59,4 @@ public class User {
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
     }
-
-    public User(String name, String password, String mail, Collection<Exchange> exchanges) {
-        this.fullName = name;
-        this.password = password;
-        this.email = mail;
-        this.exchanges = exchanges;
-    }
-
 }

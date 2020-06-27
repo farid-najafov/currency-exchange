@@ -2,24 +2,26 @@ package com.xe.console;
 
 import com.xe.entity.Exchange;
 import com.xe.entity.User;
-import com.xe.repo.ExchangeJpaRepo;
+import com.xe.repo.ExchangeRepository;
 import com.xe.repo.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 @Configuration
 public class TestCommandRunner {
-    private final ExchangeJpaRepo exchangeJpaRepo;
-    private final UserRepository userJpaRepo;
+    private final ExchangeRepository exchangeRepository;
+    private final UserRepository userRepository;
 
-    public TestCommandRunner(ExchangeJpaRepo exchangeJpaRepo, UserRepository userJpaRepo) {
-        this.exchangeJpaRepo = exchangeJpaRepo;
-        this.userJpaRepo = userJpaRepo;
+    public TestCommandRunner(ExchangeRepository exchangeRepository, UserRepository userRepository) {
+        this.exchangeRepository = exchangeRepository;
+        this.userRepository = userRepository;
     }
 
     @Bean
@@ -36,12 +38,10 @@ public class TestCommandRunner {
             as.add(new Exchange("12"));
             as.add(new Exchange("435"));
 
-            User user1 = new User("Ferid","1","1","f@mail.ru",f);
-            User user2 = new User("Aqil","1","1","aqilzeka99@gmail.com",aq);
-            User user3 = new User("Samir","1","1","as@mail.ru",as);
-            userJpaRepo.saveAll(Arrays.asList(user1,user2,user3));
+            User user1 = new User("Ferid","111", "111", "f@mail.ru",f);
+            User user2 = new User("Aqil","222", "222", "a@mail.ru",aq);
+            User user3 = new User("Samir","333", "333","s@mail.ru",as);
+            userRepository.saveAll(Arrays.asList(user1,user2,user3));
         };
     }
-
-
 }
