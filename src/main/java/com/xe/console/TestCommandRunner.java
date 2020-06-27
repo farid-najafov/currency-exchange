@@ -36,9 +36,9 @@ public class TestCommandRunner {
             as.add(new Exchange("12"));
             as.add(new Exchange("435"));
 
-            User user1 = new User("Ferid","11111111","11111111","f@mail.ru",f);
-            User user2 = new User("Aqil","11","11","aqilzeka99@gmail.com",aq);
-            User user3 = new User("Samir","33333333","33333333","as@mail.ru",as);
+            User user1 = new User("Ferid","1","1","f@mail.ru",f);
+            User user2 = new User("Aqil","1","1","aqilzeka99@gmail.com",aq);
+            User user3 = new User("Samir","1","1","as@mail.ru",as);
             userJpaRepo.saveAll(Arrays.asList(user1,user2,user3));
         };
     }

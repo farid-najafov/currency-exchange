@@ -30,14 +30,14 @@ public class User {
     private String fullName;
 
     @NotNull(message = "Password cannot be null")
-    @Size(min = 2, message = "must greater than 8 digts")
+    @Size(min = 1, message = "must greater than 8 digts")
     private String password;
 
     @NotNull(message = "Password cannot be null")
-    @Size(min = 2, message = "must greater than 8 digts")
+    @Size(min = 1, message = "must greater than 8 digts")
     private String matchingPassword;
 
-    @ValidEmail
+//    @ValidEmail
     @NotNull(message = "Email cannot be null")
     @Size(min = 1, message = "is required")
     private String email;
@@ -56,4 +56,12 @@ public class User {
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
     }
+
+    public User(String name, String password, String mail, Collection<Exchange> exchanges) {
+        this.fullName = name;
+        this.password = password;
+        this.email = mail;
+        this.exchanges = exchanges;
+    }
+
 }

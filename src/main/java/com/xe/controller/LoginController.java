@@ -6,12 +6,20 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Log4j2
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class LoginController {
 
     private final UserService userService;
@@ -20,36 +28,31 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/showLogin")
-    public String shoeLogin() {
+    @GetMapping
+    public String getLogin() {
         return "index";
     }
 
-    @PostMapping("/processLogin")
-    public String login(
+    @PostMapping
+    public String postLogin(
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
-            BindingResult bindingResult,
-            Model model
-    ) {
+            Model model, HttpServletRequest httpServletRequest
+            ) {
 
-        System.out.println(email + " " + password);
 
-        final User tempUser = userService.findByEmail(email);
+        Optional<User> byEmailAndPassword = userService.findByEmailAndPassword(email,password);
+        log.info(byEmailAndPassword);
 
-        if (bindingResult.hasErrors()) return "index";
-
-        if (tempUser == null) {
-            model.addAttribute("loginError", "Email doesn't exist");
+        if (byEmailAndPassword.equals(Optional.empty())) {
+            model.addAttribute("loginError", "Login credentials are incorrect");
             log.warn("Email doesn't exist");
+//            httpSession.invalidate();
             return "index";
         }
+        httpServletRequest.getSession();
 
-        if (!tempUser.getPassword().equals(password)) {
-            model.addAttribute("loginError", "Invalid Password");
-            log.warn("Invalid Password");
-            return "index";
-        }
+
 
         return "redirect:/landing";
 

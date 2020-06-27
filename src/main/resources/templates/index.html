@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 <div class="page-container">
     <header class="header">
         <a href="index.html" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
@@ -19,8 +20,13 @@
         <img class="login-section-image" th:src="@{/img/login-image.svg}" alt="404">
         <div class="login-section-container">
             <h1 class="login-section-container-title">Welcome Back!</h1>
-            <p class="login-section-container-description">To keep connected with us please login with personal information by email address and password</p>
-            <form action="/login/processLogin" method="post" class="login-section-container-form">
+             <h1  class="login-section-container-title" th:text="${success}"></h1>
+
+
+            <p class="login-section-container-description">To keep connected with us please login with personal
+                information by email address and password</p>
+            <form method="post" class="login-section-container-form"
+                  th:object="${user}">
 
                 <!-- Place for messages: error, alert etc ... -->
                 <div class="form-group">
@@ -39,14 +45,16 @@
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/mail-icon.svg}" alt="User Icon">
                     <label for="email"></label>
-                    <input class="login-section-container-form-input" id="email" placeholder="Email address" type="email"
-                    th:name="email">
+                    <input class="login-section-container-form-input" id="email" placeholder="Email address"
+                           type="email"
+                           th:name="email">
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
-                    <input class="login-section-container-form-input" id="password" placeholder="Password" type="password"
-                    th:name="password">
+                    <input class="login-section-container-form-input" id="password" placeholder="Password"
+                           type="password"
+                           th:name="password">
                 </div>
                 <div class="login-section-container-options">
                     <div class="login-section-container-options-wrapper">
@@ -58,8 +66,10 @@
                     <a href="forgot-password.html" class="login-section-container-options-link">Forgot password?</a>
                 </div>
                 <div class="login-section-form-buttons">
-                    <a th:href="@{/login/processLogin}" class="login-section-container-form-login">Login now</a>
-                    <a href="register/showRegistrationForm" class="login-section-container-form-signup">Create account</a>
+                    <!--                    SUBMIT BUTTON -->
+                    <input type="submit" class="login-section-container-form-login" value="Login now">
+                    <!--                    <inputth:href="@{/login}" class="login-section-container-form-login">Login now</a>-->
+                    <a href="/register" class="login-section-container-form-signup">Create account</a>
                 </div>
                 <div class="login-section-form-social">
                     <div class="login-section-form-social-description-wrapper">
@@ -68,10 +78,14 @@
                         <hr class="login-section-form-social-description-line">
                     </div>
                     <div class="login-section-form-social-icon-wrapper">
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/google-plus.svg}" alt="Google Plus"></a>
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/facebook.svg}" alt="Facebook"></a>
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/linked-in.svg}" alt="Linked In"></a>
-                        <a href="#" class="login-section-form-social-icon mr0"><img th:src="@{/img/twitter.svg}" alt="Twitter"></a>
+                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/google-plus.svg}"
+                                                                                alt="Google Plus"></a>
+                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/facebook.svg}"
+                                                                                alt="Facebook"></a>
+                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/linked-in.svg}"
+                                                                                alt="Linked In"></a>
+                        <a href="#" class="login-section-form-social-icon mr0"><img th:src="@{/img/twitter.svg}"
+                                                                                    alt="Twitter"></a>
                     </div>
                 </div>
             </form>

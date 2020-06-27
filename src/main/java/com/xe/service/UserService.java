@@ -1,8 +1,30 @@
 package com.xe.service;
 
 import com.xe.entity.User;
+import com.xe.repo.UserRepository;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
-    void addUser(User user);
-    User findByEmail(String email);
+import java.util.Optional;
+
+
+@Service
+public class UserService  {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        return  userRepository.findByEmailAndPassword(email, password);
+    }
 }
