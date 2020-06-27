@@ -10,9 +10,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/main-page-authorized")
 public class MainPageAuthorizedController {
 
-    @GetMapping
-    public String showMainPageAuthorized() {
-        log.info("GET -> /main-page-authorized");
-        return "main-page-authorized";
-    }
 }

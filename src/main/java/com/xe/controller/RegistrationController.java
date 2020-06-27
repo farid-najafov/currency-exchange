@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     private final UserService userService;
-    
+
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
@@ -32,18 +33,17 @@ public class RegistrationController {
     }
 
 
-    @GetMapping("/showRegistrationForm")
-    public String showRegistrationForm(Model model) {
+    @GetMapping
+    public String handle_get(Model model) {
         model.addAttribute("user", new User());
-        
         return "registration";
     }
-    
-    @PostMapping("/processRegistrationForm")
-    public String processRegistrationForm(
+
+    @PostMapping
+    public String handle_post(
             @Valid @ModelAttribute("user") User user,
             BindingResult bindingResult,
-            Model theModel
+            Model theModel, RedirectAttributes redirectAttributes
     ) {
 
         if (bindingResult.hasErrors()) {
@@ -52,18 +52,18 @@ public class RegistrationController {
 
         final User email = userService.findByEmail(user.getEmail());
 
-        if (email != null){
+        if (email != null) {
             theModel.addAttribute("user", new User());
             theModel.addAttribute("registrationError", "Email already exists.");
             log.warn("Email already exists.");
             return "registration";
         }
-
         userService.addUser(user);
+        redirectAttributes.addFlashAttribute("success","Successfully registered");
         log.info("Successfully registered");
 
         return "redirect:";
     }
-    
-    
+
+
 }

@@ -12,6 +12,6 @@ public class HomePageController implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         log.info("GET -> /");
-        registry.addViewController("/login/showLogin").setViewName("index");
+        registry.addViewController("/").setViewName("index");
     }
 }
