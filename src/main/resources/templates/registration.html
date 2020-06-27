@@ -1,7 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+
+>
 <head>
     <meta charset="UTF-8">
     <title>Tinder: Registration</title>
@@ -23,7 +25,7 @@
             <p class="registration-section-container-description">Create your account, it takes less than a minute. If
                 you already have an account - <a th:href="@{/landing}" class="registration-section-container-description-link">login</a></p>
             <form class="registration-section-container-form"
-                  th:action="@{/processRegistrationForm}" th:object="${user}" method="post" >
+                       action="/register/processRegistrationForm" th:object="${user}" method="post" >
 
 
                 <!-- Place for messages: error, alert etc ... -->

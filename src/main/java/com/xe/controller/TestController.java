@@ -3,7 +3,7 @@ package com.xe.controller;
 import com.xe.entity.Exchange;
 import com.xe.entity.User;
 import com.xe.repo.ExchangeJpaRepo;
-import com.xe.repo.UserJpaRepo;
+import com.xe.repo.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rel")
 public class TestController {
     private final ExchangeJpaRepo exchangeJpaRepo;
-    private final UserJpaRepo userJpaRepo;
+    private final UserRepository userJpaRepo;
 
-
-    public TestController(ExchangeJpaRepo exchangeJpaRepo, UserJpaRepo userJpaRepo) {
+    public TestController(ExchangeJpaRepo exchangeJpaRepo, UserRepository userJpaRepo) {
         this.exchangeJpaRepo = exchangeJpaRepo;
         this.userJpaRepo = userJpaRepo;
     }

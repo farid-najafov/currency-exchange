@@ -20,16 +20,33 @@
         <div class="login-section-container">
             <h1 class="login-section-container-title">Welcome Back!</h1>
             <p class="login-section-container-description">To keep connected with us please login with personal information by email address and password</p>
-            <form action="" class="login-section-container-form">
+            <form action="/login/processLogin" method="post" class="login-section-container-form">
+
+                <!-- Place for messages: error, alert etc ... -->
+                <div class="form-group">
+                    <div class="col-xs-15">
+                        <div>
+
+                            <!-- Check for registration error -->
+                            <div th:if="${loginError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                <span th:text="${loginError}"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/mail-icon.svg}" alt="User Icon">
                     <label for="email"></label>
-                    <input class="login-section-container-form-input" id="email" placeholder="Email address" type="email">
+                    <input class="login-section-container-form-input" id="email" placeholder="Email address" type="email"
+                    th:name="email">
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
-                    <input class="login-section-container-form-input" id="password" placeholder="Password" type="password">
+                    <input class="login-section-container-form-input" id="password" placeholder="Password" type="password"
+                    th:name="password">
                 </div>
                 <div class="login-section-container-options">
                     <div class="login-section-container-options-wrapper">
@@ -41,8 +58,8 @@
                     <a href="forgot-password.html" class="login-section-container-options-link">Forgot password?</a>
                 </div>
                 <div class="login-section-form-buttons">
-                    <a th:href="@{/landing}" class="login-section-container-form-login">Login now</a>
-                    <a href="/showRegistrationForm" class="login-section-container-form-signup">Create account</a>
+                    <a th:href="@{/login/processLogin}" class="login-section-container-form-login">Login now</a>
+                    <a href="register/showRegistrationForm" class="login-section-container-form-signup">Create account</a>
                 </div>
                 <div class="login-section-form-social">
                     <div class="login-section-form-social-description-wrapper">

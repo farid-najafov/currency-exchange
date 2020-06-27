@@ -3,7 +3,7 @@ package com.xe.console;
 import com.xe.entity.Exchange;
 import com.xe.entity.User;
 import com.xe.repo.ExchangeJpaRepo;
-import com.xe.repo.UserJpaRepo;
+import com.xe.repo.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +15,9 @@ import java.util.List;
 @Configuration
 public class TestCommandRunner {
     private final ExchangeJpaRepo exchangeJpaRepo;
-    private final UserJpaRepo userJpaRepo;
+    private final UserRepository userJpaRepo;
 
-    public TestCommandRunner(ExchangeJpaRepo exchangeJpaRepo, UserJpaRepo userJpaRepo) {
+    public TestCommandRunner(ExchangeJpaRepo exchangeJpaRepo, UserRepository userJpaRepo) {
         this.exchangeJpaRepo = exchangeJpaRepo;
         this.userJpaRepo = userJpaRepo;
     }
@@ -37,7 +37,7 @@ public class TestCommandRunner {
             as.add(new Exchange("435"));
 
             User user1 = new User("Ferid","11111111","11111111","f@mail.ru",f);
-            User user2 = new User("Aqil","22222222","22222222","aq@mail.ru",aq);
+            User user2 = new User("Aqil","11","11","aqilzeka99@gmail.com",aq);
             User user3 = new User("Samir","33333333","33333333","as@mail.ru",as);
             userJpaRepo.saveAll(Arrays.asList(user1,user2,user3));
         };

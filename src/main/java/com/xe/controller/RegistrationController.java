@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @Log4j2
 @Controller
+@RequestMapping("/register")
 public class RegistrationController {
 
     private final UserService userService;
@@ -46,7 +47,6 @@ public class RegistrationController {
     ) {
 
         if (bindingResult.hasErrors()) {
-
             return "registration";
         }
 
@@ -62,7 +62,7 @@ public class RegistrationController {
         userService.addUser(user);
         log.info("Successfully registered");
 
-        return "index";
+        return "redirect:";
     }
     
     

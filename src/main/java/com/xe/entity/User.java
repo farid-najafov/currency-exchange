@@ -30,11 +30,11 @@ public class User {
     private String fullName;
 
     @NotNull(message = "Password cannot be null")
-    @Size(min = 8, message = "must greater than 8 digts")
+    @Size(min = 2, message = "must greater than 8 digts")
     private String password;
 
     @NotNull(message = "Password cannot be null")
-    @Size(min = 8, message = "must greater than 8 digts")
+    @Size(min = 2, message = "must greater than 8 digts")
     private String matchingPassword;
 
     @ValidEmail
