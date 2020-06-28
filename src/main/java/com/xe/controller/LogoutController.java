@@ -29,7 +29,7 @@ public class LogoutController {
         if (session != null) {
             session.invalidate();
         }
-        return new RedirectView("/");
+        return new RedirectView("/login");
     }
 
 }

@@ -22,6 +22,6 @@ public class RatesController {
     public String showRates(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession(false);
         log.info("GET -> /rates");
-        return session == null ? "redirect:" : "rates";
+        return session == null ? "redirect:/login" : "rates";
     }
 }

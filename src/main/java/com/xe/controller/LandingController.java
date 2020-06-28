@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @Log4j2
 @Controller
-@RequestMapping("/landing")
+@RequestMapping("/")
 public class LandingController {
 
     private static String fmt(String format, Object... args) {
@@ -24,8 +24,9 @@ public class LandingController {
 //    }
     @GetMapping
     public String handleLanding(HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession(false);
-        log.info("GET -> /landing");
-        return session == null ? "redirect:" : "landing";
+//        HttpSession session = httpServletRequest.getSession(false);
+//        log.info("GET -> /landing");
+//        session == null ? "redirect:" : "landing"
+        return "landing";
     }
 }

@@ -17,12 +17,7 @@
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials" th:object="${user}">
                     <span class="main-header-username" th:field="*{fullName}"></span>
-<!--                    <div class="log-out-block">-->
-<!--                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">-->
-<!--                        <a th:href="@{/logout}" class="log-out-btn">Log out</a>-->
-<!--                    </div>-->
                 </div>
-                <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
             </div>
         </div>
     </header>
@@ -61,7 +56,7 @@
                 </div>
                 <div class="form-footer">
                     <div class="rate">1USD/0.89EUR</div>
-                    <a th:href="@{/main-page-authorized}" type="submit" class="reset-section-container-form-login">Exchange</a>
+                    <a th:href="@{/main-page}" type="submit" class="reset-section-container-form-login">Exchange</a>
                     <div class="rate">1EUR/1.12USD</div>
                 </div>
             </form>
