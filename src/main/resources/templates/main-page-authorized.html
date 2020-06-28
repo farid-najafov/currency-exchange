@@ -20,7 +20,7 @@
                     <span class="main-header-username"></span>
                     <div class="log-out-block">
                         <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
-                        <a href="index.html" class="log-out-btn">Log out</a>
+                        <a th:href="@{/logout}" class="log-out-btn">Log out</a>
                     </div>
                 </div>
                 <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="form-footer">
                     <div class="rate">1USD/0.89EUR</div>
-                    <a href="rates.html" type="submit" class="reset-section-container-form-login">Exchange</a>
+                    <a th:href="@{/rates}" type="submit" class="reset-section-container-form-login">Exchange</a>
                     <div class="rate">1EUR/1.12USD</div>
                 </div>
             </form>

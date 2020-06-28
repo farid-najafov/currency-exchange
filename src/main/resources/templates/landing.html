@@ -20,7 +20,7 @@
                     <span class="main-header-username"></span>
                     <div class="log-out-block">
                         <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
-                        <a href="index.html" class="log-out-btn">Log out</a>
+                        <a th:href="@{/logout}" class="log-out-btn">Log out</a>
                     </div>
                 </div>
                 <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
@@ -35,8 +35,6 @@
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
 
             <a th:href="@{/main-page}" class="short-url-btn">get started</a>
-<!--            <a th:if="${session.isEmpty()}" th:href="@{/main-page}" class="short-url-btn">get started</a>-->
-<!--            <a th:unless="${!session.isEmpty()}" th:href="@{/main-page-authorized}" class="short-url-btn">get started</a>-->
         </div>
         <div>
             <img th:src="@{/img/landing-background.svg}" class="short-url-img" alt="landing-background">

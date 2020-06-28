@@ -34,9 +34,6 @@ public class Exchange {
     private Rates rates;
 
 
-    public Exchange(String time) {
-        this.time = time;
-
     @JsonProperty("base")
     @Column(name = "base")
     private String base;
@@ -45,11 +42,10 @@ public class Exchange {
     @Column(name = "date")
     private Date date;
 
+
     public Exchange(String base) {
         this.base = base;
     }
 
-    //    @ManyToOne
-//    private User user;
 
 }

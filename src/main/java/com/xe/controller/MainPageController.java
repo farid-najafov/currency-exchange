@@ -25,6 +25,7 @@ public class MainPageController {
             @ModelAttribute("user") User user,
             HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession(false);
+        log.info(fmt("Found user %s", user));
         return session == null ? "main-page" : "main-page-authorized";
     }
 
