@@ -12,8 +12,8 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity(name = "users")
-@Data
 @NoArgsConstructor
+@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
