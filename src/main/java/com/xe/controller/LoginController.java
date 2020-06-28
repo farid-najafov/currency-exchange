@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Log4j2
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 
     private static String fmt(String format, Object... args) {
@@ -28,13 +28,19 @@ public class LoginController {
         this.userService = userService;
     }
 
+    @GetMapping
+    public String getLogin() {
+        return "index";
+    }
+
+
     @PostMapping
     public String postLogin(
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
             Model model, HttpServletRequest httpServletRequest) {
 
-        Optional<User> user = userService.findByEmailAndPassword(email,password);
+        Optional<User> user = userService.findByEmailAndPassword(email, password);
         log.info(fmt("Found user %s", user));
 
         if (!user.isPresent()) {
@@ -44,6 +50,6 @@ public class LoginController {
         }
 
         httpServletRequest.getSession();
-        return "redirect:/landing";
+        return "redirect:/main-page";
     }
 }

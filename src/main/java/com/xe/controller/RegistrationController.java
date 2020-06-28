@@ -59,7 +59,7 @@ public class RegistrationController {
         ra.addFlashAttribute("success","Registration is successful, please log in to continue");
         log.info("Successfully registered");
 
-        return "redirect:";
+        return "redirect:/login";
     }
 
 

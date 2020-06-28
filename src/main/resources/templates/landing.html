@@ -18,12 +18,14 @@
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
                     <span class="main-header-username"></span>
-                    <div class="log-out-block">
-                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
-                        <a th:href="@{/logout}" class="log-out-btn">Log out</a>
-                    </div>
+<!--                    <div class="log-out-block">-->
+<!--                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">-->
+                        <a th:href="@{/login}" class="log-out-btn">Login</a>
+                        <a th:href="@{/register}" class="log-out-btn">Sign up</a>
+                    <!--                    </div>-->
+
                 </div>
-                <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
+<!--                <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">-->
             </div>
         </div>
     </header>
@@ -34,7 +36,7 @@
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-            <a th:href="@{/main-page}" class="short-url-btn">get started</a>
+            <a th:href="@{/main-page}" class="short-url-btn">Guest User </a>
         </div>
         <div>
             <img th:src="@{/img/landing-background.svg}" class="short-url-img" alt="landing-background">
