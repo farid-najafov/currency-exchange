@@ -1,5 +1,6 @@
 package com.xe.controller;
 
+import com.xe.entity.Exchange;
 import com.xe.service.TestApiService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class TestApiController {
      * http://localhost:8081/testapi
      */
     @GetMapping
-    public String get_rates() {
+    public Exchange get_rates() {
         log.info("Get -> rates obtained");
         return testApiService.obtain_rates();
     }
