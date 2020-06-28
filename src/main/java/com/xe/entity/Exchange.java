@@ -33,6 +33,10 @@ public class Exchange {
     @OneToOne
     private Rates rates;
 
+
+    public Exchange(String time) {
+        this.time = time;
+
     @JsonProperty("base")
     @Column(name = "base")
     private String base;

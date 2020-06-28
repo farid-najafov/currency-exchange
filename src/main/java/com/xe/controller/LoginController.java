@@ -18,33 +18,31 @@ import java.util.Optional;
 @RequestMapping("/")
 public class LoginController {
 
+    private static String fmt(String format, Object... args) {
+        return String.format(format, args);
+    }
+
     private final UserService userService;
 
     public LoginController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getLogin() {
-        return "index";
-    }
-
     @PostMapping
     public String postLogin(
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
-            Model model, HttpServletRequest httpServletRequest
-    ) {
+            Model model, HttpServletRequest httpServletRequest) {
 
-        Optional<User> byEmailAndPassword = userService.findByEmailAndPassword(email, password);
-        log.info(byEmailAndPassword);
+        Optional<User> user = userService.findByEmailAndPassword(email,password);
+        log.info(fmt("Found user %s", user));
 
-        if (byEmailAndPassword.equals(Optional.empty())) {
-            model.addAttribute("loginError", "Login credentials are incorrect");
-            log.warn("Email doesn't exist");
-//            httpSession.invalidate();
+        if (!user.isPresent()) {
+            model.addAttribute("loginError", "Login credentials are incorrect, please try again");
+            log.warn("Incorrect login credentials");
             return "index";
         }
+
         httpServletRequest.getSession();
         return "redirect:/landing";
     }
