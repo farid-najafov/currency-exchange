@@ -1,5 +1,9 @@
 package com.xe.service;
 
+import com.xe.entity.Exchange;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,8 +16,10 @@ public class TestApiService {
         this.rest = rest;
     }
 
-    public String obtain_rates() {
-        String url = "https://open.exchangerate-api.com/v6/latest";
-        return rest.getForObject(url, String.class);
+    public Exchange obtain_rates() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        final HttpEntity<Object> entity = new HttpEntity<>(httpHeaders);
+        String url = "https://api.exchangeratesapi.io/latest";
+        return rest.exchange(url, HttpMethod.GET, entity, Exchange.class).getBody();
     }
 }

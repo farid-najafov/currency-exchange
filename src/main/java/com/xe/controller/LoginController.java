@@ -5,16 +5,12 @@ import com.xe.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Log4j2
@@ -38,10 +34,9 @@ public class LoginController {
             @RequestParam(value = "email") String email,
             @RequestParam(value = "password") String password,
             Model model, HttpServletRequest httpServletRequest
-            ) {
+    ) {
 
-
-        Optional<User> byEmailAndPassword = userService.findByEmailAndPassword(email,password);
+        Optional<User> byEmailAndPassword = userService.findByEmailAndPassword(email, password);
         log.info(byEmailAndPassword);
 
         if (byEmailAndPassword.equals(Optional.empty())) {
@@ -51,10 +46,6 @@ public class LoginController {
             return "index";
         }
         httpServletRequest.getSession();
-
-
-
         return "redirect:/landing";
-
     }
 }
