@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -7,18 +7,19 @@
     <title>Currency Exchange: Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 <div class="page-container">
     <header class="header">
-        <a href="index.html" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
+        <a th:href="@{/}" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
     </header>
 
     <section class="login-section">
         <img class="login-section-image" th:src="@{/img/login-image.svg}" alt="404">
         <div class="login-section-container">
             <h1 class="login-section-container-title">Welcome Back!</h1>
-             <h1  class="login-section-container-title" th:text="${success}"></h1>
+            <h1  class="login-section-container-title" th:text="${success}"></h1>
 
 
             <p class="login-section-container-description">To keep connected with us please login with personal
@@ -61,16 +62,17 @@
                             <span class="login-section-container-options-checkmark"></span>
                         </label>
                     </div>
-                    <a href="forgot-password.html" class="login-section-container-options-link">Forgot password?</a>
+                    <a th:href="@{/forgot-password}" class="login-section-container-options-link">Forgot password?</a>
                 </div>
                 <div class="login-section-form-buttons">
                     <!--                    SUBMIT BUTTON -->
                     <input type="submit" class="login-section-container-form-login" value="Login now">
                     <!--                    <inputth:href="@{/login}" class="login-section-container-form-login">Login now</a>-->
                     <a href="/register" class="login-section-container-form-signup">Create account</a>
-                    <a href="/" class="login-section-container-form-signup">Return Info Page</a>
 
                 </div>
+
+                <a href="/" type="button" class="btn btn-secondary" >Return Info Page</a>
                 <div class="login-section-form-social">
                     <div class="login-section-form-social-description-wrapper">
                         <hr class="login-section-form-social-description-line">

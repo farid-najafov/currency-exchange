@@ -21,12 +21,8 @@ public class MainPageController {
     }
 
     @GetMapping
-    public String showMainPage(
-            @ModelAttribute("user") User user,
-            HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession(false);
-        log.info(fmt("Found user %s", user));
-        return session == null ? "main-page" : "main-page-authorized";
+    public String showMainPage() {
+        return "main-page";
     }
 
 

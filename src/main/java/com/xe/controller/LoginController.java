@@ -51,6 +51,6 @@ public class LoginController {
         }
 
         httpServletRequest.getSession();
-        return "redirect:/main-page";
+        return "redirect:/main-page-authorized";
     }
 }

@@ -17,16 +17,8 @@ public class LandingController {
         return String.format(format, args);
     }
 
-//    @GetMapping
-//    public String handleLanding(HttpServletRequest httpServletRequest) {
-//
-//        return  "landing";
-//    }
     @GetMapping
     public String handleLanding(HttpServletRequest httpServletRequest) {
-//        HttpSession session = httpServletRequest.getSession(false);
-//        log.info("GET -> /landing");
-//        session == null ? "redirect:" : "landing"
         return "landing";
     }
 }
