@@ -5,23 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exchange: Landing</title>
+    <title>Landing</title>
     <link rel="stylesheet" th:href="@{/css/user-profile.css}">
     <link rel="stylesheet" th:href="@{/css/short-url.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
 
     <header class="main-header">
-        <a href="main-page.html" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
+        <a th:href="@{/}" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
         <div class="main-header-wrapper">
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
                     <span class="main-header-username"></span>
 <!--                    <div class="log-out-block">-->
 <!--                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">-->
-                        <a th:href="@{/login}" class="log-out-btn">Login</a>
-                        <a th:href="@{/register}" class="log-out-btn">Sign up</a>
+                    <button type="button" class="btn btn-secondary"><a th:href="@{/login}" >Login</a></button>
+                    <button type="button" class="btn btn-light"><a th:href="@{/register}">Sign up</a></button>
+
                     <!--                    </div>-->
 
                 </div>
@@ -36,7 +38,7 @@
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                 laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-            <a th:href="@{/main-page}" class="short-url-btn">Guest User </a>
+            <a th:href="@{/main-page}" type="button" class="btn btn-danger">Continue as a guest</a>
         </div>
         <div>
             <img th:src="@{/img/landing-background.svg}" class="short-url-img" alt="landing-background">

@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -13,7 +13,7 @@
 <body>
 <div class="page-container">
     <header class="header">
-        <a href="index.html" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
+        <a th:href="@{/}" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
     </header>
 
     <section class="login-section">
@@ -28,3 +28,4 @@
 
 <script th:src="@{/js/checkbox.js}"></script>
 </body>
+</html>

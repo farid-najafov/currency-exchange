@@ -11,64 +11,62 @@
 </head>
 
 <body>
-    <header class="main-header">
-        <a href="main-page.html" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
-        <div class="main-header-wrapper">
-            <div class="main-header-profile-wrapper">
-                <div class="main-header-profile-credentials" th:object="${user}">
-                    <span class="main-header-username" th:field="*{fullName}"></span>
-                </div>
-            </div>
+<header class="main-header">
+    <a th:href="@{/}" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
+    <div class="main-header-wrapper">
+        <div class="main-header-profile-wrapper">
+
         </div>
-    </header>
+    </div>
+</header>
 
-    <section class="exchange">
-        <div class="exchange-content">
-            <h3 class="exchange-content-heading">
-                Exchange money
-            </h3>
-            <form action="#" class="exchange-form">
+<section class="exchange">
+    <div class="exchange-content">
+        <h3 class="exchange-content-heading">
+            Exchange money
+        </h3>
+        <form action="#" class="exchange-form">
 
-                <div class="form-columns">
+            <div class="form-columns">
 
-                    <div class="exchange-form-column">
+                <div class="exchange-form-column">
                         <span class="select-name">
                             From
                         </span>
-                        <div id="exchange-from"></div>
-                        <div id="exchange-from-result" class="exchange-result">
-                            <span class="exchange-result-currency">$</span>
-                            <input type="text" class="currency-input" value="222" placeholder="0">
-                        </div>
+                    <div id="exchange-from"></div>
+                    <div id="exchange-from-result" class="exchange-result">
+                        <span class="exchange-result-currency">$</span>
+                        <input type="text" class="currency-input" value="222" placeholder="0">
                     </div>
+                </div>
 
-                    <div class="exchange-form-column">
+                <div class="exchange-form-column">
                         <span class="select-name">
                             To
                         </span>
-                        <div id="exchange-to"></div>
-                        <div id="exchange-to-result" class="exchange-result">
-                            <span class="exchange-result-currency">€</span>
-                            <input type="text" class="currency-input" value="222" placeholder="0">
-                        </div>
+                    <div id="exchange-to"></div>
+                    <div id="exchange-to-result" class="exchange-result">
+                        <span class="exchange-result-currency">€</span>
+                        <input type="text" class="currency-input" value="222" placeholder="0">
                     </div>
-
                 </div>
-                <div class="form-footer">
-                    <div class="rate">1USD/0.89EUR</div>
-                    <a th:href="@{/main-page}" type="submit" class="reset-section-container-form-login">Exchange</a>
-                    <div class="rate">1EUR/1.12USD</div>
-                </div>
-            </form>
-        </div>
+
+            </div>
+            <div class="form-footer">
+                <div class="rate">1USD/0.89EUR</div>
+                <a th:href="@{/main-page}" type="submit" class="reset-section-container-form-login">Exchange</a>
+                <div class="rate">1EUR/1.12USD</div>
+            </div>
+        </form>
+    </div>
 
 
 
 
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
-    <script th:src="@{/js/currency-select.js}"></script>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
+<script th:src="@{/js/currency-select.js}"></script>
 </body>
 
 

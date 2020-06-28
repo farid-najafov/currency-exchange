@@ -2,20 +2,21 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-
 >
 <head>
     <meta charset="UTF-8">
-    <title>Tinder: Registration</title>
+    <title>Registration</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/registration.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 <body>
 
 <div class="page-container">
 
     <header class="header">
-        <a href="registration.html" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
+        <a th:href="@{/}" class="header-link"><img th:src="@{/img/iba-logo-sky-blue.svg}" alt="IBA Tech Academy"></a>
     </header>
 
     <section class="registration-section">
@@ -23,7 +24,9 @@
         <div class="registration-section-container">
             <h1 class="registration-section-container-title">Create An Account</h1>
             <p class="registration-section-container-description">Create your account, it takes less than a minute. If
-                you already have an account - <a th:href="@{/login}" class="registration-section-container-description-link">login</a></p>
+                you already have an account - </p>
+
+            <a th:href="@{/login}" type="button" class="btn btn-info">login</a>
             <form class="registration-section-container-form"
                        th:object="${user}" method="post" >
 
