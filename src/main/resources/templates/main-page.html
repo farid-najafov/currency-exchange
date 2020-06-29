@@ -26,6 +26,7 @@
             Exchange money
         </h3>
 
+
         <form action="#" class="exchange-form">
 
             <div class="form-columns">
@@ -34,6 +35,7 @@
                         <span class="select-name">
                             From
                         </span>
+
                     <select name="" >
                         <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
                     </select>
@@ -42,12 +44,14 @@
 <!--                        <span class="exchange-result-currency">$</span>-->
 <!--                        <input type="text" class="currency-input" value="222" placeholder="0">-->
 <!--                    </div>-->
+
                 </div>
 
                 <div class="exchange-form-column">
                         <span class="select-name">
                             To
                         </span>
+
                     <select name="">
                         <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
                     </select>
@@ -56,6 +60,7 @@
 <!--                        <span class="exchange-result-currency">€</span>-->
 <!--                        <input type="text" class="currency-input" value="222" placeholder="0">-->
 <!--                    </div>-->
+
                 </div>
 
             </div>

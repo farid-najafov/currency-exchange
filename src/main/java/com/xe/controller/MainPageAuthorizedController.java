@@ -3,7 +3,7 @@ package com.xe.controller;
 import com.xe.entity.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +28,6 @@ public class MainPageAuthorizedController {
         HttpSession session = httpServletRequest.getSession(false);
         log.info(fmt("Found user %s", user));
         return session == null ? "redirect:/login" : "main-page-authorized";
+
     }
 }
