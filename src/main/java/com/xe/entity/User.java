@@ -59,4 +59,5 @@ public class User {
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
     }
+
 }
