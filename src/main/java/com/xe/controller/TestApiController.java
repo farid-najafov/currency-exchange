@@ -19,7 +19,7 @@ public class TestApiController {
     }
 
     /**
-     * http://localhost:8081/testapi
+     * http://localhost:8080/testapi
      */
     @GetMapping
     public Exchange get_rates() {
