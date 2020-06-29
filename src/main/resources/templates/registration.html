@@ -31,73 +31,58 @@
                        th:object="${user}" method="post" >
 
                 <!-- Place for messages: error, alert etc ... -->
-                <div class="form-group">
-                    <div class="col-xs-15">
-                        <div>
-                            <!-- Check for registration error -->
-                            <div th:if="${registrationError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                <span th:text="${registrationError}"></span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <p class="error-message"
+                   th:if="${#fields.hasGlobalErrors()}"
+                   th:each="error : ${#fields.errors('global')}"
+                   th:text="${error}">Validation error</p>
 
  <!--                Full Name-->
-                <div class="registration-section-container-form-input-wrapper">
+                <div class="registration-section-container-form-input-wrapper"
+                     th:classappend="${#fields.hasErrors('fullName')}? 'has-error':''">
                     <img th:src="@{/img/user-icon.svg}" alt="User Icon">
                     <label for="full-name"></label>
                     <input class="registration-section-container-form-input" id="full-name" placeholder="Full name" type="text"
                            name="fullName" th:field="*{fullName}">
                 </div>
-
-                <div th:if="${#fields.hasErrors('fullName')}"
-                     style="margin-bottom: 25px" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('fullName')}" th:text="${err}"></li>
-                    </ul>
-                </div>
+                <p class="error-message"
+                   th:each="error: ${#fields.errors('fullName')}"
+                   th:text="${error}">Validation error</p>
 
 <!--                Email-->
-                <div class="registration-section-container-form-input-wrapper">
+                <div class="registration-section-container-form-input-wrapper"
+                     th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                     <img th:src="@{/img/mail-icon.svg}" alt="User Icon">
                     <label for="email"></label>
                     <input class="registration-section-container-form-input" id="email" placeholder="Email address" type="email"
                            name="emailId" th:field="*{email}">
                 </div>
-                <div th:if="${#fields.hasErrors('email')}"
-                     style="margin-bottom: 25px" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
-                    </ul>
-                </div>
+                <p class="error-message"
+                   th:each="error: ${#fields.errors('email')}"
+                   th:text="${error}">Validation error</p>
 
                 <!--                Password-->
-                <div class="registration-section-container-form-input-wrapper">
+                <div class="registration-section-container-form-input-wrapper"
+                     th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
                     <input class="registration-section-container-form-input" id="password" placeholder="Password" type="password"
                            name="password" th:fiel="*{password}">
                 </div>
-                <div th:if="${#fields.hasErrors('password')}"
-                     style="margin-bottom: 25px" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('password')}" th:text=" ${err}"></li>
-                    </ul>
-                </div>
+                <p class="error-message"
+                   th:each="error: ${#fields.errors('password')}"
+                   th:text="${error}">Validation error</p>
 
-                <div class="registration-section-container-form-input-wrapper mb0">
+                <div class="registration-section-container-form-input-wrapper"
+                     th:classappend="${#fields.hasErrors('confirmPassword')}?'has-error':''">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="confirm-password"></label>
-                    <input class="registration-section-container-form-input" id="confirm-password" placeholder="Confirm Password" type="password"
-                           name="matchingPassword" th:field="*{matchingPassword}">
+                    <input class="registration-section-container-form-input" id="confirm-password"
+                           placeholder="Confirm Password" type="password"
+                           name="confirmPassword" th:field="*{confirmPassword}">
                 </div>
-                <div th:if="${#fields.hasErrors('matchingPassword')}"
-                     style="margin-bottom: 25px" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('matchingPassword')}" th:errors="*{matchingPassword}"></li>
-                    </ul>
-                </div>
+                <p class="error-message"
+                   th:each="error: ${#fields.errors('confirmPassword')}"
+                   th:text="${error}">Validation error</p>
 
                 <input type="submit" value="Create account" class="registration-section-container-form-submit">
             </form>

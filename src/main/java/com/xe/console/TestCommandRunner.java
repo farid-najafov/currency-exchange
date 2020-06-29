@@ -38,9 +38,9 @@ public class TestCommandRunner {
             as.add(new Exchange("12"));
             as.add(new Exchange("435"));
 
-            User user1 = new User("Ferid","111", "111", "f@mail.ru",f);
-            User user2 = new User("Aqil","222", "222", "a@mail.ru",aq);
-            User user3 = new User("Samir","333", "333","s@mail.ru",as);
+            User user1 = new User("Ferid","111", "f@mail.ru",f);
+            User user2 = new User("Aqil","222",  "aqil99@gmail.com",aq);
+            User user3 = new User("Samir","333","s@mail.ru",as);
             userRepository.saveAll(Arrays.asList(user1,user2,user3));
         };
     }

@@ -19,7 +19,7 @@ public class Rates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private int id;
+    private Long id;
 
     @JsonProperty("USD")
     private float USD;
