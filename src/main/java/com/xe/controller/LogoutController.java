@@ -11,10 +11,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+@RequestMapping("/logout")
 @Log4j2
 @Controller
-@RequestMapping("/logout")
 public class LogoutController {
     private static String fmt(String format, Object... args) {
         return String.format(format, args);

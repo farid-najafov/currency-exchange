@@ -12,5 +12,4 @@ public class QResponse {
     private Map<XCurrency, String> rates;
     private XCurrency base;
     private Date date;
-
 }

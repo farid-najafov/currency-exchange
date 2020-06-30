@@ -1,9 +1,12 @@
 package com.xe.controller;
 
+import com.xe.entity.Exchange2;
+import com.xe.service.ExchangeService;
 import com.xe.util.XCurrency;
 import com.xe.entity.api.Quote;
 import com.xe.service.QuoteService;
 import lombok.extern.log4j.Log4j2;
+import org.h2.engine.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +21,13 @@ import java.util.stream.Collectors;
 public class MainPageController {
 
     private final QuoteService qService;
+    private final ExchangeService eService;
 
-    public MainPageController(QuoteService qService) {
+    public MainPageController(QuoteService qService, ExchangeService eService) {
         this.qService = qService;
+        this.eService = eService;
     }
+
 
     private static String fmt(String format, Object... args) {
         return String.format(format, args);
@@ -41,11 +47,17 @@ public class MainPageController {
     }
 
     @PostMapping
-    @ResponseBody
-    public List<Quote> get_rates(@RequestParam("base") String baseCcy) {
-        List<Quote> rates = qService.get_rates(baseCcy);
 
-        return rates;
+    public String get_rates(@RequestParam("base") String baseCcy,
+                            @RequestParam("quote") String quoteCcy,
+                            @RequestParam("value") int value,
+                            Model model
+    ) {
+//        List<Quote> rates = qService.get_rates(baseCcy);
+
+        Exchange2 exchange2 = eService.exchange_value(baseCcy, quoteCcy, value);
+        model.addAttribute(exchange2);
+        return "main-page";
     }
 
 }
