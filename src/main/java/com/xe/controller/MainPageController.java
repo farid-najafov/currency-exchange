@@ -1,19 +1,15 @@
 package com.xe.controller;
 
-import com.xe.entity.User;
-import com.xe.entity.XCurrency;
+import com.xe.util.XCurrency;
+import com.xe.entity.api.Quote;
+import com.xe.service.QuoteService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -21,13 +17,19 @@ import java.util.stream.Collectors;
 @RequestMapping("/main-page")
 public class MainPageController {
 
+    private final QuoteService qService;
+
+    public MainPageController(QuoteService qService) {
+        this.qService = qService;
+    }
+
     private static String fmt(String format, Object... args) {
         return String.format(format, args);
     }
 
     @ModelAttribute("currencies")
-    public List<XCurrency.Type> addCurrenciesToModel(Model model) {
-        List<XCurrency.Type> collect = Arrays.stream(XCurrency.Type.values())
+    public List<XCurrency> addCurrenciesToModel(Model model) {
+        List<XCurrency> collect = Arrays.stream(XCurrency.values())
                 .collect(Collectors.toList());
         model.addAllAttributes(collect);
         return collect;
@@ -38,5 +40,12 @@ public class MainPageController {
         return "main-page";
     }
 
+    @PostMapping
+    @ResponseBody
+    public List<Quote> get_rates(@RequestParam("base") String baseCcy) {
+        List<Quote> rates = qService.get_rates(baseCcy);
+
+        return rates;
+    }
 
 }

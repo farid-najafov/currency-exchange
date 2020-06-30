@@ -29,7 +29,7 @@ public class User {
     private String fullName;
 
 //    @NotNull(message = "Set up a password")
-//    @Size(min = 3, message = "must greater than 3 digits")
+//    @Size(min = 3, message = "must be greater than 3 digits")
     @Column(name = "password")
     private String password;
 

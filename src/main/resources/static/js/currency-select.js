@@ -1,16 +1,16 @@
 const currencyData = [
-  {
-    text: "USD - American dollar",
-    value: "USD",
-    selected: false,
-    imageSrc: "./img/usd.png",
-  },
-  {
-    text: "EUR -  European Union",
-    value: "EUR",
-    selected: false,
-    imageSrc: "./img/eur.png",
-  },
+  // {
+  //   text: "USD - American dollar",
+  //   value: "USD",
+  //   selected: false,
+  //   imageSrc: "./img/usd.png",
+  // },
+  // {
+  //   text: "EUR -  European Union",
+  //   value: "EUR",
+  //   selected: false,
+  //   imageSrc: "./img/eur.png",
+  // },
 ];
 
 $("#exchange-from").ddslick({

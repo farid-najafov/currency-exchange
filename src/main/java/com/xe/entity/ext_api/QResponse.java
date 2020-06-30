@@ -1,16 +1,16 @@
 package com.xe.entity.ext_api;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.xe.util.XCurrency;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 @Data
 //@JsonIgnoreProperties(ignoreUnknown = true)
 public class QResponse {
-    private QRates rates;
-    private String base;
+    private Map<XCurrency, String> rates;
+    private XCurrency base;
     private Date date;
 
 }
