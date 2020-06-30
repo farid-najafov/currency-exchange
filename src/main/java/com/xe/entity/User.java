@@ -45,11 +45,12 @@ public class User {
     )
     private Collection<Exchange> exchanges;
 
-    public User(String name, String password, String mail, Collection<Exchange> exchanges) {
+    public User(String name, String password, String mail ) {
         this.fullName = name;
         this.password = password;
         this.email = mail;
-        this.exchanges = exchanges;
+//        this.exchanges = exchanges;
     }
+
 
 }

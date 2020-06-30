@@ -6,14 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity(name = "exchanges")
 @Data
 @NoArgsConstructor
-
+@AllArgsConstructor
 @JsonPropertyOrder({
         "rates",
         "base",
@@ -25,6 +27,7 @@ public class Exchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exchange_id")
+
     @JsonIgnore
     private int id;
 
@@ -33,19 +36,21 @@ public class Exchange {
     @OneToOne
     private Rates rates;
 
+     @JsonProperty("rate")
+     @Column(name = "rate")
+     private double rate;
 
-    @JsonProperty("base")
-    @Column(name = "base")
-    private String base;
+     @JsonProperty("base")
+     @Column(name = "base")
+     private String baseCcy;
+
+     @JsonProperty("quote")
+     @Column(name = "quote")
+     private String quoteCcy;
+
 
     @JsonProperty("date")
     @Column(name = "date")
     private Date date;
-
-
-    public Exchange(String base) {
-        this.base = base;
-    }
-
 
 }
