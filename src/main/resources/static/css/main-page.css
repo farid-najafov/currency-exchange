@@ -203,12 +203,12 @@ body {
 
 .currency-input {
   display: inline-block;
-  color: #bdbdbd;
-  font-size: 100px;
-  border: none;
+  /*color: #bdbdbd;*/
+  font-size: 25px;
+  /*border: none;*/
   background-color: transparent;
   width: 320px;
-
+  padding: 5px;
   outline-color: #bdbdbd;
 }
 

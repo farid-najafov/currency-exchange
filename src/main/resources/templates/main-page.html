@@ -25,6 +25,8 @@
         <h3 class="exchange-content-heading">
             Exchange money
         </h3>
+
+
         <form action="#" class="exchange-form">
 
             <div class="form-columns">
@@ -33,22 +35,34 @@
                         <span class="select-name">
                             From
                         </span>
-                    <div id="exchange-from"></div>
-                    <div id="exchange-from-result" class="exchange-result">
-                        <span class="exchange-result-currency">$</span>
-                        <input type="text" class="currency-input" value="222" placeholder="0">
+
+
+                    <div id="exchange-from">
+                        <select name="" >
+                            <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
+                        </select>
                     </div>
+                    <div id="exchange-from-result" class="exchange-result">
+<!--                        <span class="exchange-result-currency">$</span>-->
+                        <input type="text" class="currency-input"  placeholder="Enter amount to convert..">
+                    </div>
+
                 </div>
 
                 <div class="exchange-form-column">
                         <span class="select-name">
                             To
                         </span>
-                    <div id="exchange-to"></div>
-                    <div id="exchange-to-result" class="exchange-result">
-                        <span class="exchange-result-currency">€</span>
-                        <input type="text" class="currency-input" value="222" placeholder="0">
+                    <div id="exchange-to">
+                        <select name="">
+                            <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
+                        </select>
                     </div>
+                    <div id="exchange-to-result" class="exchange-result">
+<!--                        <span class="exchange-result-currency">€</span>-->
+                        <input type="text" class="currency-input"  placeholder="000">
+                    </div>
+
                 </div>
 
             </div>
@@ -59,9 +73,6 @@
             </div>
         </form>
     </div>
-
-
-
 
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
