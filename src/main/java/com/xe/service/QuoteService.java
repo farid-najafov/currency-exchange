@@ -60,6 +60,7 @@ public class QuoteService {
 //
 //        return quotes;
 //    }
+
     public Quote get_rate_for_specific_exchange(String baseCcy,String quoteCcy) {
         String url = String.format("https://api.exchangeratesapi.io/latest?base=%s", baseCcy);
         QResponse forObject = rest.getForObject(url, QResponse.class);
@@ -68,9 +69,8 @@ public class QuoteService {
                 filter(a -> a.getKey().name().equals(quoteCcy)).
                 map(a -> new Quote(
                         forObject.getBase(),
-                        forObject.getRates().entrySet().stream().
-                                filter(b -> b.getKey().name().equals(quoteCcy)).
-                                map(Map.Entry::getKey).
+                        forObject.getRates().keySet().stream().
+                                filter(s -> s.name().equals(quoteCcy)).
                                 findFirst().orElse(null),
                         Double.valueOf(a.getValue()),
                         forObject.getDate()

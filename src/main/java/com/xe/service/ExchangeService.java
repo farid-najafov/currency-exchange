@@ -27,10 +27,11 @@ public class ExchangeService {
         return new Exchange2(XCurrency.valueOf(baseCcy),XCurrency.valueOf(quoteCcy),value,quoteCcy_value,quote.rate,quoteCcy_rate);
     }
 
-    private Double find_quoteCcy_value(int value, Double rate) {
+    public Double find_quoteCcy_value(double value, Double rate) {
         return value * rate;
     }
-    private Double find_quoteCcy_rate( Double rate) {
+
+    public Double find_quoteCcy_rate( Double rate) {
         return 1/rate;
     }
 
