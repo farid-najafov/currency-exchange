@@ -29,7 +29,7 @@ public class PasswordResetController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @ModelAttribute("passwordResentFrom")
+    @ModelAttribute("passwordResetFrom")
     public PasswordResetDto passwordReset() {
         return new PasswordResetDto();
     }
