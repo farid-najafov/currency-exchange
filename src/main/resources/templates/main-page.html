@@ -27,7 +27,7 @@
         </h3>
 
 
-        <form action="#"  th:object="${exchange2}" class="exchange-form">
+        <form action="#"  th:object="${exchange2}" class="exchange-form" method="POST">
 
             <div class="form-columns">
 
@@ -38,13 +38,13 @@
 
 
                     <div id="exchange-from">
-                        <select name="" >
-                            <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
+                        <select th:name="base" >
+                            <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}" >EUR</option>
                         </select>
                     </div>
                     <div id="exchange-from-result" class="exchange-result">
-<!--                        <span class="exchange-result-currency">$</span>-->
-                        <input type="text" class="currency-input"  th:value="*{basevalue}" placeholder="Enter amount to convert..">
+                        <!--                        <span class="exchange-result-currency">$</span>-->
+                        <input type="text" class="currency-input"  th:field="*{basevalue}"  th:name="value" placeholder="Enter amount to convert..">
                     </div>
 
                 </div>
@@ -54,22 +54,22 @@
                             To
                         </span>
                     <div id="exchange-to">
-                        <select name="">
+                        <select name="quote">
                             <option th:each="curr : ${currencies}" th:value="${curr}" th:text="${curr}">EUR</option>
                         </select>
                     </div>
                     <div id="exchange-to-result" class="exchange-result">
-<!--                        <span class="exchange-result-currency">€</span>-->
-                        <input type="text" class="currency-input" th:value="*{quoteValue}" placeholder="000">
+                        <!--                        <span class="exchange-result-currency">€</span>-->
+                        <input type="text" class="currency-input" th:field="*{quoteValue}" placeholder="000">
                     </div>
 
                 </div>
 
             </div>
             <div class="form-footer">
-                <div class="rate"><h1 th:value="*{baseRate}"></h1></div>
-                <a th:href="@{/main-page}" type="submit" class="reset-section-container-form-login">Exchange</a>
-                <div class="rate"><h1 th:value="*{quoteRate}"></h1></div>
+                <div class="rate"><h1 th:field="*{baseRate}"></h1></div>
+                <input type="submit" class="reset-section-container-form-login" th:name="Exchange"/>
+                <div class="rate"><h1 th:field="*{quoteRate}"></h1></div>
             </div>
         </form>
     </div>
