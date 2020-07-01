@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/logout")
 @Log4j2
 @Controller
+ 
 public class LogoutController {
     private static String fmt(String format, Object... args) {
         return String.format(format, args);
