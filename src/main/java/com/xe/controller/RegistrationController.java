@@ -1,6 +1,5 @@
 package com.xe.controller;
 
-import com.xe.dto.UserRegistrationDto;
 import com.xe.entity.User;
 import com.xe.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -26,13 +25,10 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    public User user() {
+        return new User();
     }
-
-
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -42,36 +38,24 @@ public class RegistrationController {
 
     @GetMapping
     public String handle_get(Model model) {
-        model.addAttribute("user", new UserRegistrationDto());
+        model.addAttribute("user", new User());
         return "registration";
     }
 
     @PostMapping
     public String handle_post(
-            @Valid @ModelAttribute("user") UserRegistrationDto user,
+            @Valid @ModelAttribute("user") User user,
             BindingResult result,
             RedirectAttributes ra) {
 
         if (result.hasErrors()) return "registration";
-
-//        Optional<User> byEmail = userService.findByEmail(user.getEmail());
 
         Optional<User> existing = userService.findByEmail(user.getEmail());
         if (existing.isPresent()){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
-        if (result.hasErrors()){
-            return "registration";
-        }
-
-//        userService.save(userDto);
-//        if (byEmail.isPresent()) {
-//            model.addAttribute("user", new User());
-//            model.addAttribute("registrationError", "Email is already taken");
-//            log.warn("Duplicate email");
-//            return "registration";
-//        }
+        if (result.hasErrors()) return "registration";
 
         userService.addUser(user);
         ra.addFlashAttribute("success","Registration is successful, please log in to continue");

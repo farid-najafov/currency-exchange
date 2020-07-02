@@ -1,4 +1,4 @@
-﻿﻿<!doctype html>
+﻿<!doctype html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -17,10 +17,12 @@
 
     <section class="login-section">
         <img class="login-section-image" th:src="@{/img/login-image.svg}" alt="404">
+
         <div class="login-section-container">
             <h1 class="login-section-container-title">Welcome Back!</h1>
-            <h1  class="login-section-container-title" th:text="${success}"></h1>
-
+            <div th:if="${success}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+                <span th:text="${success}"></span>
+            </div>
 
             <p class="login-section-container-description">To keep connected with us please login with personal
                 information by email address and password</p>
@@ -94,8 +96,6 @@
         </div>
     </section>
 </div>
-
-
 <script th:src="@{/js/checkbox.js}"></script>
 </body>
 </html>

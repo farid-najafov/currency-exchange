@@ -19,9 +19,9 @@ $("#exchange-from").ddslick({
   selectText: "",
   imagePosition: "left",
   background: "transparent",
-  onSelected: function (selectedData) {
-    //callback function: do something with selectedData;
-  },
+  // onSelected: function (selectedData) {
+  //   //callback function: do something with selectedData;
+  // },
 });
 
 $("#exchange-to").ddslick({

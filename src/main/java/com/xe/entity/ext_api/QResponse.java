@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Map;
 
 @Data
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class QResponse {
     private Map<XCurrency, String> rates;
     private XCurrency base;

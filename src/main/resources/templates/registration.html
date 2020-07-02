@@ -66,22 +66,22 @@
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
                     <input class="registration-section-container-form-input" id="password" placeholder="Password" type="password"
-                           name="password" th:fiel="*{password}">
+                           name="password" th:field="*{password}">
                 </div>
                 <p class="error-message"
                    th:each="error: ${#fields.errors('password')}"
                    th:text="${error}">Validation error</p>
 
                 <div class="registration-section-container-form-input-wrapper"
-                     th:classappend="${#fields.hasErrors('confirmPassword')}?'has-error':''">
+                     th:classappend="${#fields.hasErrors('matchingPassword')}?'has-error':''">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="confirm-password"></label>
                     <input class="registration-section-container-form-input" id="confirm-password"
                            placeholder="Confirm Password" type="password"
-                           name="confirmPassword" th:field="*{confirmPassword}">
+                           name="confirmPassword" th:field="*{matchingPassword}">
                 </div>
                 <p class="error-message"
-                   th:each="error: ${#fields.errors('confirmPassword')}"
+                   th:each="error: ${#fields.errors('matchingPassword')}"
                    th:text="${error}">Validation error</p>
 
                 <input type="submit" value="Create account" class="registration-section-container-form-submit">

@@ -31,6 +31,7 @@ public class LoginController {
 
     @GetMapping
     public String getLogin() {
+        log.info("GET -> /login");
         return "index";
     }
 
@@ -51,6 +52,6 @@ public class LoginController {
         }
 
         httpServletRequest.getSession();
-        return "redirect:/main-page-authorized";
+        return "main-page-authorized";
     }
 }

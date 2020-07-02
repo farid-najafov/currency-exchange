@@ -223,7 +223,7 @@ body {
 .rate {
   border: 1px solid #bdbdbd;
   border-radius: 10px;
-  font-size: 27px;
+  font-size: 15px;
   padding: 15px 20px;
   color: #828282;
 }
@@ -269,7 +269,7 @@ body {
   margin-top: 10px;
 }
 
-#tofiq{
-  width: 100px;
+/*#tofiq{*/
+/*  width: 100px;*/
 
-}
+/*}*/

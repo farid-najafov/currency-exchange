@@ -19,6 +19,7 @@ public class MainPageAuthorizedController {
         return String.format(format, args);
     }
 
+    //TODO must be corrected
     @GetMapping
     public String showMainPageAuthorized(
             @ModelAttribute("user") User user,
