@@ -24,4 +24,6 @@ public class Rates {
     @JsonProperty("USD")
     private float USD;
 
+
+
 }
