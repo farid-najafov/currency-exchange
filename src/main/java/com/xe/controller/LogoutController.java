@@ -24,11 +24,10 @@ public class LogoutController {
     @ResponseBody
     public RedirectView logout_get(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession(false);
-        log.info("SESSION " + session);
+        log.info(fmt("SESSION %s", session));
 
-        if (session != null) {
-            session.invalidate();
-        }
+        if (session != null) session.invalidate();
+
         return new RedirectView("/login");
     }
 

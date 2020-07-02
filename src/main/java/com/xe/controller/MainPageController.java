@@ -1,19 +1,12 @@
 package com.xe.controller;
 
-import com.xe.dto.UserRegistrationDto;
-import com.xe.entity.Exchange2;
-import com.xe.service.ExchangeService;
 import com.xe.util.XCurrency;
 import com.xe.entity.api.Quote;
 import com.xe.service.QuoteService;
 import lombok.extern.log4j.Log4j2;
-import org.h2.engine.Mode;
-import org.hibernate.boot.model.relational.QualifiedTableName;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -30,14 +23,11 @@ import java.util.stream.Collectors;
 public class MainPageController {
 
     private final QuoteService qService;
-    private final ExchangeService eService;
-    private static DecimalFormat df = new DecimalFormat("0.0000");
+    private static final DecimalFormat df = new DecimalFormat("0.0000");
 
-    public MainPageController(QuoteService qService, ExchangeService eService) {
+    public MainPageController(QuoteService qService) {
         this.qService = qService;
-        this.eService = eService;
     }
-
 
     private static String fmt(String format, Object... args) {
         return String.format(format, args);
@@ -53,14 +43,13 @@ public class MainPageController {
 
     @ModelAttribute("object")
     public Quote userRegistrationDto() {
-        return new Quote("EUR", "USD");
+        return new Quote();
     }
 
 
     @GetMapping
-    public String showMainPage(@ModelAttribute("object") Quote quote) {
-//        model.addAttribute("object",new Quote() );
-
+    public String showMainPage() {
+        log.info("GET -> /main-page");
         return "main-page";
     }
 
@@ -69,41 +58,30 @@ public class MainPageController {
                             @RequestParam("quote") String quoteCcy,
                             @RequestParam(value = "amount", defaultValue = "1") String value,
                             @ModelAttribute("object") Quote q,
-                            Model model, RedirectAttributes ra
-    ) {
-//        List<Quote> rates = qService.get_rates(baseCcy);
-        log.info("Base " + baseCcy + " Quote" + quoteCcy);
-        log.info("value " + value);
-        q = qService.get_rate_for_specific_exchange(baseCcy, quoteCcy);
-        log.info("RATE " + q.rate);
-        Double v = 0.00;
+                            Model model) {
 
-        v = eService.find_quoteCcy_value(Double.parseDouble(value), q.rate);
+        log.info(fmt("Base: %s, Quote: %s", baseCcy, quoteCcy));
+        log.info(fmt("value: %s", value));
+
+        q = qService.get_rate_for_specific_exchange(baseCcy, quoteCcy);
+        log.info(fmt("RATE: %s", q.rate));
+
+        Double calc = Double.parseDouble(value) * q.rate;
 
         BigDecimal bigDecimal = new BigDecimal(value);
         String s = bigDecimal.setScale(2, RoundingMode.CEILING).toPlainString();
 
         model.addAttribute("object", q);
         model.addAttribute("amount", s);
-        model.addAttribute("result", df.format(v));
-
+        model.addAttribute("result", df.format(calc));
         model.addAttribute("left", df.format(q.rate));
         model.addAttribute("right", df.format(1 / q.rate));
         return "main-page";
     }
 
-    //    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "requested book not found")
-    @ExceptionHandler({NumberFormatException.class})
+    @ExceptionHandler({Exception.class})
     public RedirectView handleErr2(RedirectAttributes ra) {
-//        log.info("NumberFormatException");
-//        ModelAndView modelAndView = new ModelAndView();
-////        ra.addFlashAttribute("msj", "Enter digits or String is empty");
-////        mv.addObject("msj", "Enter digits or String is empty");
-//        modelAndView.addObject("object", new Quote());
-//        modelAndView.addObject("msj", "Enter digits or String is empty");
-//        modelAndView.setViewName("main-page");
-        ra.addFlashAttribute("msj",  "Enter digits or String is empty");
+        ra.addFlashAttribute("msg",  "Please choose correct details to convert");
         return new RedirectView("/main-page");
     }
-
 }

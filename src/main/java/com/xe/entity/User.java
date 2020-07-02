@@ -6,51 +6,52 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
-@Entity()
-@NoArgsConstructor
+@Entity(name = "users")
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@FieldMatch.List({
+        @FieldMatch(first = "password", second = "matchingPassword", message = "Password fields must match")
+})
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "user_id")
-     private Long id;
+    @Column(name = "user_id")
+    private long id;
 
-//    @NotNull(message = "Insert your full name")
-//    @Size(min = 1, message = "is required")
-    @Column(name = "fullname")
+    @NotNull(message = "Full Name cannot be null")
+    @Size(min = 1)
     private String fullName;
 
-//    @NotNull(message = "Set up a password")
-//    @Size(min = 3, message = "must be greater than 3 digits")
-    @Column(name = "password")
+    @NotNull(message = "Password cannot be null")
+    @Size(min = 3, message = "must be greater than 3 digits")
     private String password;
 
-//    @Email
-//    @NotNull(message = "Insert your email")
-//    @Size(min = 1, message = "is required")
+    @Transient
+    private String matchingPassword;
+
+    @NotNull(message = "Email cannot be null")
+    @Size(min = 1)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "us_ex",
-            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "id")},
+            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
     )
-    private Collection<Exchange> exchanges;
+    Collection<Exchange> exchanges;
 
-    public User(String name, String password, String mail ) {
+    public User(String name, String password, String matchingPassword, String mail, Collection<Exchange> exchanges) {
         this.fullName = name;
         this.password = password;
         this.email = mail;
-//        this.exchanges = exchanges;
+        this.matchingPassword = matchingPassword;
+        this.exchanges = exchanges;
     }
-
 
 }

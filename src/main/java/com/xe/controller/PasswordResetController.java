@@ -21,12 +21,10 @@ public class PasswordResetController {
 
     private final UserService userService;
     private final PasswordResetTokenRepository tokenRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public PasswordResetController(UserService userService, PasswordResetTokenRepository tokenRepository, BCryptPasswordEncoder passwordEncoder) {
+    public PasswordResetController(UserService userService, PasswordResetTokenRepository tokenRepository) {
         this.userService = userService;
         this.tokenRepository = tokenRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @ModelAttribute("passwordResetFrom")
@@ -58,16 +56,16 @@ public class PasswordResetController {
         if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute(BindingResult.class.getName() + ".passwordResetForm", result);
             redirectAttributes.addFlashAttribute("passwordResetForm", from);
-            return "redirect:/reset-password?token=" + from.getToken();
+            return "reset-password";
         }
 
         PasswordResetToken token = tokenRepository.findByToken(from.getToken());
         User user = token.getUser();
-        String updatedPassword = passwordEncoder.encode(from.getPassword());
+        String updatedPassword = from.getPassword();
         userService.updatePassword(updatedPassword, user.getId());
         tokenRepository.delete(token);
 
-        return "redirect:/index?resetSuccess";
+        return "redirect:/login";
     }
 }
 

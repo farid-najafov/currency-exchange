@@ -71,7 +71,7 @@ public class PasswordForgotController {
         PasswordResetToken token = new PasswordResetToken();
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user.orElseThrow(() -> {throw new UserNotFoundException("User not found ");}));
-        token.setExpiryDate(30);
+        token.setExpiryDate(10);
         tokenRepository.save(token);
 
         Mail mail = new Mail();

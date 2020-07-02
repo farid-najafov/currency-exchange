@@ -14,8 +14,4 @@ public class Components {
         return restTemplateBuilder.build();
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

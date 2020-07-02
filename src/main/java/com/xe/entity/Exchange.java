@@ -27,7 +27,6 @@ public class Exchange {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exchange_id")
-
     @JsonIgnore
     private int id;
 
@@ -38,7 +37,7 @@ public class Exchange {
 
      @JsonProperty("rate")
      @Column(name = "rate")
-     private double rate;
+     private String rate;
 
      @JsonProperty("base")
      @Column(name = "base")
@@ -53,4 +52,8 @@ public class Exchange {
     @Column(name = "date")
     private Date date;
 
+
+    public Exchange(String s) {
+        this.rate = s;
+    }
 }
