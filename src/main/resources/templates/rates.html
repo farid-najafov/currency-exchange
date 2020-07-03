@@ -17,7 +17,7 @@
     <div class="main-header-wrapper" >
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
-                <span class="main-header-username">Anatolii Safronov</span>
+                <span class="main-header-username" th:text="${session.user.fullName}"></span>
                 <div class="log-out-block">
                     <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
                     <a th:href="@{/login }" class="log-out-btn">Log out</a>
@@ -109,7 +109,7 @@
             </li>
 
         </ul>
-        <a th:href="@{/main-page}" class="reset-section-container-form-login button-rates">Go
+        <a th:href="@{/main-page-authorized}" class="reset-section-container-form-login button-rates">Go
             back</a>
 
     </div>

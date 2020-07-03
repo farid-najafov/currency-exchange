@@ -13,12 +13,15 @@
 
 <body>
     <header class="main-header">
+
         <a th:href="@{/}" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}" alt="IBA Tech Academy"></a>
+        <h3 t></h3>
+
         <div class="main-header-wrapper">
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
-                    <span class="main-header-username"></span>
-                    <div class="log-out-block">
+                    <span class="main-header-username" th:text="${session.user.fullName}"></span>
+                    <div class="log-out-block" >
                         <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
                         <a th:href="@{/logout}" class="log-out-btn">Log out</a>
                     </div>
@@ -27,7 +30,6 @@
             </div>
         </div>
     </header>
-
     <section class="exchange">
         <div class="exchange-content">
             <h3 class="exchange-content-heading">
