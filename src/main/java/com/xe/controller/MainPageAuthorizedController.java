@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,11 +23,11 @@ public class MainPageAuthorizedController {
     //TODO must be corrected
     @GetMapping
     public String showMainPageAuthorized(
-            @ModelAttribute("user") User user,
+           @SessionAttribute("user") User user,
             HttpServletRequest httpServletRequest) {
-
+       log.info("MAIN PAGE AUTHORIZED");
         HttpSession session = httpServletRequest.getSession(false);
-        log.info(fmt("Found user %s", user));
+        log.info(fmt("Found user %s in Main Page Authorized", user));
         return session == null ? "error-404" : "main-page-authorized";
     }
 }
