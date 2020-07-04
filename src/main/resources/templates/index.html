@@ -20,7 +20,7 @@
 
         <div class="login-section-container">
             <h1 class="login-section-container-title">Welcome Back!</h1>
-            <div th:if="${success}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+            <div class="alert alert-success col-xs-offset-1 col-xs-10" th:if="${success}">
                 <span th:text="${success}"></span>
             </div>
 

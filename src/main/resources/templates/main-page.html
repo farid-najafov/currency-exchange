@@ -36,6 +36,7 @@
                     <div>
                         <select name="base" class="currency-input" >
                             <option value="" disabled selected hidden th:text="${object.base_ccy != null} ? ${object.base_ccy} : 'Choose a currency'"></option>
+<!--                            <option th:if="${object.base_ccy != null}" th:text="${object.base_ccy}"></option>-->
                             <option th:each="curr : ${currencies}" th:text="${curr}"></option>
                         </select>
                     </div>
@@ -53,6 +54,7 @@
                     <div >
                         <select class="currency-input" name="quote">
                             <option value="" disabled selected hidden th:text="${object.quote_ccy != null} ? ${object.quote_ccy} : 'Choose a currency'"></option>
+                            <!--                            <option  th:if="${object.quote_ccy != null}" th:text="${object.quote_ccy}"></option>-->
                             <option th:each="curr : ${currencies}" th:text="${curr}"></option>
                         </select>
                     </div>
