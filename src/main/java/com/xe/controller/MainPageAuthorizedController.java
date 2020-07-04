@@ -24,6 +24,7 @@ public class MainPageAuthorizedController {
     @GetMapping
     public String showMainPageAuthorized(
 
+
             HttpServletRequest httpServletRequest) {
        log.info("MAIN PAGE AUTHORIZED");
 //       TODO get rid og try/catch. Optimize
@@ -37,5 +38,6 @@ public class MainPageAuthorizedController {
       }
 //       return user == null || session == null ? "redirect:/login" : "main-page-authorized";
 //        return session == null ? "error-404" : "main-page-authorized";
+
     }
 }

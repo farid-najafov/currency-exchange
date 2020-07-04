@@ -21,6 +21,7 @@ public class RatesController {
     }
 
     @GetMapping
+
     public String showRates(HttpServletRequest httpServletRequest) {
         log.info("GET -> /rates");
         //       TODO get rid og try/catch. Optimize
@@ -33,6 +34,7 @@ public class RatesController {
             return "redirect:/login";
         }
 //        return session == null ? "index" : "rates";
+
     }
 
     @PostMapping
