@@ -19,31 +19,30 @@
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
                     <span class="main-header-username"></span>
-<!--                    <div class="log-out-block">-->
-<!--                        <img th:src="@{/img/log-out-icon.svg}" alt="Log out">-->
-                    <button type="button" class="btn btn-secondary"><a th:href="@{/login}" >Login</a></button>
+
+                    <button class="btn btn-light" type="button"><a th:href="@{/login}">Login</a></button>
                     <button type="button" class="btn btn-light"><a th:href="@{/register}">Sign up</a></button>
 
-                    <!--                    </div>-->
 
                 </div>
-<!--                <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">-->
+
             </div>
         </div>
     </header>
-    <main class="short-url-container">
+    <section class="short-url-container">
         <div class="short-url-content">
-            <h2 class="short-url-title">Lorem</h2>
-            <p class="short-url-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h4 class="short-url-title">Welcome</h4>
+            <p class="short-url-text">This is a simple currency converter website that allows you to
+                quickly check the latest currency exchange rates</p>
+            <div>
+                <a class="btn btn-danger" th:href="@{/main-page}" type="button">Continue as a guest</a>
+            </div>
 
-            <a th:href="@{/main-page}" type="button" class="btn btn-danger">Continue as a guest</a>
         </div>
         <div>
             <img th:src="@{/img/landing-background.svg}" class="short-url-img" alt="landing-background">
         </div>
-    </main>
+    </section>
 </body>
 
 </html>

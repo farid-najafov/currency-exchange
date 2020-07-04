@@ -38,8 +38,10 @@
 .short-url-container {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    /*align-items: center;*/
     overflow: hidden;
+    padding-left: 100px;
+    padding-top: 100px;
 }
 
 .short-url-content {

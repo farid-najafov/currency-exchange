@@ -44,7 +44,7 @@
                     <input class="registration-section-container-form-input" id="full-name" placeholder="Full name" type="text"
                            name="fullName" th:field="*{fullName}">
                 </div>
-                <p class="error-message"
+                <p class="error-message" style="color: red"
                    th:each="error: ${#fields.errors('fullName')}"
                    th:text="${error}">Validation error</p>
 
@@ -56,7 +56,7 @@
                     <input class="registration-section-container-form-input" id="email" placeholder="Email address" type="email"
                            name="emailId" th:field="*{email}">
                 </div>
-                <p class="error-message"
+                <p class="error-message" style="color: red"
                    th:each="error: ${#fields.errors('email')}"
                    th:text="${error}">Validation error</p>
 
@@ -68,7 +68,7 @@
                     <input class="registration-section-container-form-input" id="password" placeholder="Password" type="password"
                            name="password" th:field="*{password}">
                 </div>
-                <p class="error-message"
+                <p class="error-message" style="color: red"
                    th:each="error: ${#fields.errors('password')}"
                    th:text="${error}">Validation error</p>
 
@@ -80,7 +80,7 @@
                            placeholder="Confirm Password" type="password"
                            name="confirmPassword" th:field="*{matchingPassword}">
                 </div>
-                <p class="error-message"
+                <p class="error-message" style="color: red"
                    th:each="error: ${#fields.errors('matchingPassword')}"
                    th:text="${error}">Validation error</p>
 
