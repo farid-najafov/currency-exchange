@@ -20,7 +20,7 @@
                 <span class="main-header-username" th:text="${session.user.fullName}"></span>
                 <div class="log-out-block">
                     <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
-                    <a th:href="@{/login }" class="log-out-btn">Log out</a>
+                    <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
             <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">

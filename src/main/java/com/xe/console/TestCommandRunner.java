@@ -4,11 +4,9 @@ import com.xe.entity.Exchange;
 import com.xe.entity.User;
 import com.xe.repo.ExchangeRepository;
 import com.xe.repo.UserRepository;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;

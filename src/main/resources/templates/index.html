@@ -48,19 +48,20 @@
                     <label for="email"></label>
                     <input class="login-section-container-form-input" id="email" placeholder="Email address"
                            type="email"
-                           th:name="email">
+                           th:name="email" th:value="${user.email}">
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
                     <input class="login-section-container-form-input" id="password" placeholder="Password"
                            type="password"
-                           th:name="password">
+                           th:name="password" th:value="${user.password}">
                 </div>
                 <div class="login-section-container-options">
                     <div class="login-section-container-options-wrapper">
                         <label class="login-section-container-options-checkbox-wrapper">Remember Me
-                            <input type="checkbox" class="login-section-container-options-old-checkbox">
+                            <input checked class="login-section-container-options-old-checkbox" name="check"
+                                   type="checkbox" value="rm">
                             <span class="login-section-container-options-checkmark"></span>
                         </label>
                     </div>

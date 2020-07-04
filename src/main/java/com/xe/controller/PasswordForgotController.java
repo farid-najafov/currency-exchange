@@ -9,7 +9,6 @@ import com.xe.repo.PasswordResetTokenRepository;
 import com.xe.service.EmailService;
 import com.xe.service.UserService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;

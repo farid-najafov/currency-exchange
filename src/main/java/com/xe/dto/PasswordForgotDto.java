@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 public class PasswordForgotDto {
 
     @Email
-    @NotEmpty
+    @NotEmpty(message = "cannot be empty")
     private String email;
 
 }
