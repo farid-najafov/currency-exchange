@@ -21,12 +21,18 @@ public class RatesController {
     }
 
     @GetMapping
-    public String showRates(HttpServletRequest httpServletRequest, @SessionAttribute("user")User user) {
-        HttpSession session = httpServletRequest.getSession(false);
+    public String showRates(HttpServletRequest httpServletRequest) {
         log.info("GET -> /rates");
-        log.info(fmt("Found user %s in Rates", user));
-
-        return session == null ? "index" : "rates";
+        //       TODO get rid og try/catch. Optimize
+        try {
+            HttpSession session = httpServletRequest.getSession(false);
+            User user = (User) session.getAttribute("user");
+            log.info(fmt("Found user %s in Main Page Authorized", user));
+            return "rates";
+        }catch (Exception e){
+            return "redirect:/login";
+        }
+//        return session == null ? "index" : "rates";
     }
 
     @PostMapping

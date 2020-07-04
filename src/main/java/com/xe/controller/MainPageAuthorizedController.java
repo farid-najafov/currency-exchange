@@ -20,14 +20,22 @@ public class MainPageAuthorizedController {
         return String.format(format, args);
     }
 
-    //TODO must be corrected
+
     @GetMapping
     public String showMainPageAuthorized(
-           @SessionAttribute("user") User user,
+
             HttpServletRequest httpServletRequest) {
        log.info("MAIN PAGE AUTHORIZED");
-        HttpSession session = httpServletRequest.getSession(false);
-        log.info(fmt("Found user %s in Main Page Authorized", user));
-        return session == null ? "error-404" : "main-page-authorized";
+//       TODO get rid og try/catch. Optimize
+      try {
+          HttpSession session = httpServletRequest.getSession(false);
+          User user = (User) session.getAttribute("user");
+          log.info(fmt("Found user %s in Main Page Authorized", user));
+          return "main-page-authorized";
+      }catch (Exception e){
+          return "redirect:/login";
+      }
+//       return user == null || session == null ? "redirect:/login" : "main-page-authorized";
+//        return session == null ? "error-404" : "main-page-authorized";
     }
 }
