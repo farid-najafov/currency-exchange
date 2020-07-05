@@ -1,6 +1,7 @@
 package com.xe.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.xe.entity.api.Exchange;
 import com.xe.validation.FieldMatch;
 import lombok.Data;
 import lombok.NoArgsConstructor;

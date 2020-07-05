@@ -1,8 +1,8 @@
 package com.xe.controller;
 
-import com.xe.util.XCurrency;
-import com.xe.entity.api.Quote;
-import com.xe.service.QuoteService;
+import com.xe.enums.XCurrency;
+import com.xe.entity.api.Exchange;
+import com.xe.service.ExchangeService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +22,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/main-page")
 public class MainPageController {
 
-    private final QuoteService qService;
+    private final ExchangeService qService;
     private static final DecimalFormat df = new DecimalFormat("0.0000");
 
-    public MainPageController(QuoteService qService) {
+    public MainPageController(ExchangeService qService) {
         this.qService = qService;
     }
 
@@ -42,8 +42,8 @@ public class MainPageController {
     }
 
     @ModelAttribute("object")
-    public Quote userRegistrationDto() {
-        return new Quote();
+    public Exchange userRegistrationDto() {
+        return new Exchange();
     }
 
 
@@ -57,7 +57,7 @@ public class MainPageController {
     public String get_rates(@RequestParam("base") String baseCcy,
                             @RequestParam("quote") String quoteCcy,
                             @RequestParam(value = "amount", defaultValue = "1") String value,
-                            @ModelAttribute("object") Quote q,
+                            @ModelAttribute("object") Exchange q,
                             Model model) {
 
         log.info(fmt("Base: %s, Quote: %s", baseCcy, quoteCcy));

@@ -1,4 +1,4 @@
-package com.xe.util;
+package com.xe.enums;
 
 public enum  XCurrency {
 

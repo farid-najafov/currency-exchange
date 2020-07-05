@@ -1,7 +1,9 @@
 package com.xe.service;
 
-import com.xe.entity.Exchange;
+
 import com.xe.entity.User;
+
+import com.xe.entity.api.Exchange;
 import com.xe.repo.UserRepository;
 import org.springframework.stereotype.Service;
 
