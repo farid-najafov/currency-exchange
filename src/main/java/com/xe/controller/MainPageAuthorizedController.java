@@ -68,13 +68,14 @@ public class MainPageAuthorizedController {
 
 
     @PostMapping
-    public String post( @RequestParam(value = "amount", defaultValue = "1") String value ,
+    public String post(@RequestParam(value = "amount", defaultValue = "1") String value,
+                       @RequestParam("single-date") String date,
                        HttpServletRequest req, Model model) {
 
-        log.info(fmt("Post -> /main-page-authorized "));
+        log.info("Post -> /main-page-authorized");
 
         log.info(value);
-
+        log.info(date);
         Quote q = quoteService.get_rate_for_specific_exchange("USD", "EUR");
         double calc = Double.parseDouble(value) * q.rate;
 

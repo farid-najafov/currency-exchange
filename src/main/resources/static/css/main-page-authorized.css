@@ -209,12 +209,12 @@ body {
 
 .currency-input {
   display: inline-block;
-  color: #bdbdbd;
+  /*color: #bdbdbd;*/
   font-size: 100px;
-  border: none;
+  /*border: none;*/
   background-color: transparent;
   width: 320px;
-  outline-color: #bdbdbd;
+  /*outline-color: #bdbdbd;*/
 }
 
 .form-footer {
