@@ -30,14 +30,14 @@ public class Exchange {
     @JsonIgnore
     private int id;
 
-    @JsonProperty("rates")
-    @JoinColumn(name = "rates")
-    @OneToOne
-    private Rates rates;
+//    @JsonProperty("rates")
+//    @JoinColumn(name = "rates")
+//    @OneToOne
+//    private Rates rates;
 
      @JsonProperty("rate")
      @Column(name = "rate")
-     private String rate;
+     private double rate;
 
      @JsonProperty("base")
      @Column(name = "base")
@@ -47,13 +47,28 @@ public class Exchange {
      @Column(name = "quote")
      private String quoteCcy;
 
+    @JsonProperty("amount")
+    @Column(name = "amount")
+    private double baseValue;
+
+    @JsonProperty("result")
+    @Column(name = "result")
+    private double quoteValue;
 
     @JsonProperty("date")
     @Column(name = "date")
     private Date date;
 
+    public Exchange(String baseCcy, String quoteCcy, double baseValue, double quoteValue,double rate, Date date) {
+        this.baseCcy = baseCcy;
+        this.rate =rate;
+        this.quoteCcy = quoteCcy;
+        this.baseValue = baseValue;
+        this.quoteValue = quoteValue;
+        this.date = date;
+    }
 
-    public Exchange(String s) {
+    public Exchange(int s) {
         this.rate = s;
     }
 }
