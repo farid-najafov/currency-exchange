@@ -13,15 +13,12 @@ import javax.servlet.http.HttpSession;
 @Log4j2
 @Controller
 public class LogoutController {
-    private static String fmt(String format, Object... args) {
-        return String.format(format, args);
-    }
 
     @GetMapping
     public RedirectView logout_get(HttpServletRequest req) {
         HttpSession session = req.getSession(false);
 
-        log.info(fmt("SESSION %s", session.getId()));
+        log.info(String.format("SESSION %s", session.getId()));
 
         if (session.getAttribute("RM") == null) session.invalidate();
 

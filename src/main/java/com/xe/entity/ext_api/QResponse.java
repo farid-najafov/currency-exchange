@@ -1,6 +1,6 @@
 package com.xe.entity.ext_api;
 
-import com.xe.util.XCurrency;
+import com.xe.enums.XCurrency;
 import lombok.Data;
 
 import java.util.Date;
