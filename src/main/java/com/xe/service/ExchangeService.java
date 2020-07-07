@@ -1,6 +1,7 @@
 package com.xe.service;
 
 import com.xe.entity.api.Exchange;
+import com.xe.entity.ext_api.TestResponse;
 import com.xe.entity.ext_api.QResponse;
 import com.xe.enums.XCurrency;
 import lombok.extern.log4j.Log4j2;
@@ -55,5 +56,19 @@ public class ExchangeService {
                 obj.getDate());
     }
 
+    public TestResponse get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
+
+//        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(starDate);
+//        String firstDate = new SimpleDateFormat("yyyy-MM-d").format(format);
+//
+//        Date format2 = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(endDate);
+//        String secondDate = new SimpleDateFormat("yyyy-MM-d").format(format2);
+
+        String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", starDate, endDate, baseCcy, quoteCcy);
+
+        TestResponse obj = rest.getForObject(url, TestResponse.class);
+        log.info(obj);
+        return obj;
+    }
 
 }
