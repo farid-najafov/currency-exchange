@@ -1,8 +1,8 @@
 package com.xe.service;
 
 import com.xe.entity.api.Exchange;
-import com.xe.entity.ext_api.TestResponse;
 import com.xe.entity.ext_api.QResponse;
+import com.xe.entity.ext_api.ResponseByPeriod;
 import com.xe.enums.XCurrency;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class ExchangeService {
 
     public Exchange get_rate_for_specific_date(String date, String baseCcy, String quoteCcy) throws ParseException {
 
-        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(date);
+        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).parse(date);
 
         String fmt = new SimpleDateFormat("yyyy-MM-d").format(format);
 
@@ -56,18 +56,20 @@ public class ExchangeService {
                 obj.getDate());
     }
 
-    public TestResponse get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
+    public ResponseByPeriod get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
+        log.info(starDate, endDate);
+        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(starDate);
+        String firstDate = new SimpleDateFormat("yyyy-MM-d").format(format);
+        log.info(firstDate);
+        Date format2 = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(endDate);
+        String secondDate = new SimpleDateFormat("yyyy-MM-d").format(format2);
+        log.info(secondDate);
+        String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", firstDate, secondDate, baseCcy, quoteCcy);
 
-//        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(starDate);
-//        String firstDate = new SimpleDateFormat("yyyy-MM-d").format(format);
-//
-//        Date format2 = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(endDate);
-//        String secondDate = new SimpleDateFormat("yyyy-MM-d").format(format2);
-
-        String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", starDate, endDate, baseCcy, quoteCcy);
-
-        TestResponse obj = rest.getForObject(url, TestResponse.class);
+        ResponseByPeriod obj = rest.getForObject(url, ResponseByPeriod.class);
         log.info(obj);
+
+
         return obj;
     }
 

@@ -2,9 +2,10 @@ package com.xe.controller;
 
 import com.xe.entity.User;
 import com.xe.entity.api.Exchange;
+import com.xe.entity.ext_api.ResponseByPeriod;
+import com.xe.enums.XCurrency;
 import com.xe.service.ExchangeService;
 import com.xe.service.UserService;
-import com.xe.enums.XCurrency;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,8 +48,13 @@ public class MainPageAuthorizedController {
     }
 
     @ModelAttribute("object")
-    public Exchange userRegistrationDto() {
+    public Exchange create() {
         return new Exchange();
+    }
+
+    @ModelAttribute("obj")
+    public ResponseByPeriod create2() {
+        return new ResponseByPeriod();
     }
 
     @GetMapping
@@ -63,16 +69,16 @@ public class MainPageAuthorizedController {
 
 
     @PostMapping
-    public String post(@RequestParam(value = "amount", defaultValue = "1") String value,
-                       @RequestParam("single-date") String date,
-                       @RequestParam("base") String baseCcy,
-                       @RequestParam("quote") String quoteCcy,
-                       @ModelAttribute("object") Exchange ex,
-                       HttpServletRequest req, Model model) throws ParseException {
+    public String post_with_history(@RequestParam(value = "amount", defaultValue = "1") String value,
+                                    @RequestParam("single-date") String date,
+                                    @RequestParam("base") String baseCcy,
+                                    @RequestParam("quote") String quoteCcy,
+//                       @ModelAttribute("object") Exchange ex,
+                                    HttpServletRequest req, Model model) throws ParseException {
 
         log.info("Post -> /main-page-authorized");
 
-        ex = exchangeService.get_rate_for_specific_date(date, baseCcy, quoteCcy);
+        Exchange ex = exchangeService.get_rate_for_specific_date(date, baseCcy, quoteCcy);
 
         double calc = Double.parseDouble(value) * ex.rate;
 
@@ -95,6 +101,20 @@ public class MainPageAuthorizedController {
         return "main-page-authorized";
     }
 
+    @PostMapping("rates")
+    public String post_show_rates(@RequestParam("start_at") String a,
+                                  @RequestParam("end_at") String b,
+                                  @RequestParam("base") String fd,
+                                  @RequestParam("quote") String q,
+//                                  @ModelAttribute("obj") RateByPeriod rbp,
+                                  Model model) throws ParseException {
+
+        ResponseByPeriod rbp = exchangeService.get_rate_for_specific_interval(a, b, fd, q);
+        log.info(rbp);
+
+        model.addAttribute("obj", rbp);
+        return "rates";
+    }
 
     @ExceptionHandler({Exception.class, NullPointerException.class})
     public String handleErr2(RedirectAttributes ra, Exception ex) {
