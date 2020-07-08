@@ -5,6 +5,7 @@ import com.xe.entity.PasswordResetToken;
 import com.xe.entity.User;
 import com.xe.repo.PasswordResetTokenRepository;
 import com.xe.service.UserService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+@Log4j2
 @Controller
 @RequestMapping("/reset-password")
 public class PasswordResetController {
@@ -45,25 +47,31 @@ public class PasswordResetController {
             model.addAttribute("token", resetToken.getToken());
         }
 
+        model.addAttribute("passwordResetFrom", new PasswordResetDto());
         return "reset-password";
     }
 
     @PostMapping
     @Transactional
-    public String handlePasswordReset(@ModelAttribute("passwordResetForm") @Valid PasswordResetDto from,
+    public String handlePasswordReset(@Valid @ModelAttribute("passwordResetForm") PasswordResetDto form,
                                       BindingResult result,
                                       RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute(BindingResult.class.getName() + ".passwordResetForm", result);
-            redirectAttributes.addFlashAttribute("passwordResetForm", from);
-            return "reset-password";
+//            redirectAttributes.addFlashAttribute(BindingResult.class.getName() + ".passwordResetForm", result);
+//            redirectAttributes.addFlashAttribute("passwordResetForm", form);
+//            return "reset-password";
+            return "redirect:/reset-password?token=" + form.getToken();
+
         }
 
-        PasswordResetToken token = tokenRepository.findByToken(from.getToken());
+        PasswordResetToken token = tokenRepository.findByToken(form.getToken());
         User user = token.getUser();
-        String updatedPassword = from.getPassword();
+        String updatedPassword = form.getPassword();
         userService.updatePassword(updatedPassword, user.getId());
         tokenRepository.delete(token);
+
+        redirectAttributes.addFlashAttribute("success","Password successfully reset, please log in to continue");
+        log.info("Successfully registered");
 
         return "redirect:/login";
     }

@@ -15,9 +15,7 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@FieldMatch.List({
-        @FieldMatch(first = "password", second = "matchingPassword", message = "Password fields must match")
-})
+@FieldMatch(first = "password", second = "matchingPassword", message = "Password fields must match")
 public class User {
 
     @Id
