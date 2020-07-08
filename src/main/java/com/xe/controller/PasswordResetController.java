@@ -5,7 +5,6 @@ import com.xe.entity.PasswordResetToken;
 import com.xe.entity.User;
 import com.xe.repo.PasswordResetTokenRepository;
 import com.xe.service.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;

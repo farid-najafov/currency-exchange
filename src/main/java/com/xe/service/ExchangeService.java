@@ -1,6 +1,7 @@
 package com.xe.service;
 
 import com.xe.entity.api.Exchange;
+import com.xe.entity.api.RateByPeriod;
 import com.xe.entity.ext_api.QResponse;
 import com.xe.entity.ext_api.ResponseByPeriod;
 import com.xe.enums.XCurrency;
@@ -10,8 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 @Log4j2
@@ -56,21 +58,32 @@ public class ExchangeService {
                 obj.getDate());
     }
 
-    public ResponseByPeriod get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
-        log.info(starDate, endDate);
+    public  List<RateByPeriod> get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
+
         Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(starDate);
         String firstDate = new SimpleDateFormat("yyyy-MM-d").format(format);
-        log.info(firstDate);
+
         Date format2 = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(endDate);
         String secondDate = new SimpleDateFormat("yyyy-MM-d").format(format2);
-        log.info(secondDate);
+
         String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", firstDate, secondDate, baseCcy, quoteCcy);
 
         ResponseByPeriod obj = rest.getForObject(url, ResponseByPeriod.class);
-        log.info(obj);
+        log.info("RESPONSE BY PERIOD" + obj);
 
-
-        return obj;
+       return IntStream.range(0, obj.getRates().size()).mapToObj(
+                a -> {
+                    List<String> current_dates = new ArrayList<>(obj.getRates().keySet());
+                    return new RateByPeriod(
+                            XCurrency.valueOf(obj.getBase()),
+                            XCurrency.valueOf(quoteCcy),
+                            obj.getStart_at(),
+                            obj.getEnd_at(),
+                            obj.getRates().get(current_dates.get(a)).get(XCurrency.valueOf(quoteCcy)),
+                            current_dates.get(a)
+                    );
+                }
+        ).collect(Collectors.toList());
     }
 
 }
