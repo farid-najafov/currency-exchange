@@ -31,16 +31,16 @@
         </div>
     </div>
 </header>
+
+
 <section class="exchange">
     <div class="exchange-content">
-        <h3 class="exchange-content-heading">
-            Exchange money
+        <h3 class="exchange-content-heading">Exchange money
         </h3>
 
         <form class="exchange-form" method="post">
 
             <div class="form-columns">
-
                 <div class="exchange-form-column">
                         <span class="select-name">
                             From
@@ -48,17 +48,12 @@
                     <div>
                         <select class="currency-input" name="base">
                             <option disabled hidden selected
-                                    th:text="${object.base_ccy != null} ? ${object.base_ccy} : 'Choose a currency'"
+                                    th:text="'Choose a currency'"
                                     value=""></option>
                             <option th:each="curr : ${currencies}" th:text="${curr}"></option>
                         </select>
                     </div>
                     <br>
-                    <div class="exchange-result" id="exchange-from-result">
-                        <!--                            <span class="exchange-result-currency">$</span>-->
-                        <input class="currency-input" name="amount" placeholder="0" th:value="${amount}"
-                               type="text">
-                    </div>
 
                 </div>
 
@@ -69,42 +64,55 @@
                     <div>
                         <select class="currency-input" name="quote">
                             <option disabled hidden selected
-                                    th:text="${object.quote_ccy != null} ? ${object.quote_ccy} : 'Choose a currency'"
-                                    value=""></option>
+                                    th:text="'Choose a currency'"
+                                    value=""> choose a currency
+                            </option>
                             <option th:each="curr : ${currencies}" th:text="${curr}"></option>
                         </select>
                     </div>
                     <br>
-                    <div class="exchange-result" id="exchange-to-result">
-                        <input class="currency-input" placeholder="0" th:value="${result}" type="text">
-                    </div>
 
                 </div>
 
             </div>
-            <div class="datepicker-wrapper datepicker-wrapper-left">
+            <div class="form-columns">
+                <div class="exchange-form-column">
+                    <div class="datepicker-wrapper datepicker-wrapper-left">
                             <span class="select-name">
-                                Select Date
+                                From
                             </span>
-                <input class="datepicker-input" id="date-from1" name="single-date"
-                       th:value="${date != null} ? ${date}: ${#dates.format(#dates.createNow(), 'dd MMMM yyyy ')}"
-                       type="text">
-                <div class="datepicker-value" id="date-from-value1"></div>
+                        <label for="date-from"></label><input class="datepicker-input" id="date-from" name="start_at"
+                                                              th:value="${#dates.format(#dates.createNow(), 'dd MMMM yyyy ')}"
+                                                              type="text">
+                        <div class="datepicker-value" id="date-from-value"></div>
+                    </div>
+
+                </div>
+                <div class="exchange-form-column">
+
+                    <div class="datepicker-wrapper datepicker-wrapper-left" >
+                            <span class="select-name">
+                                To
+                            </span>
+                        <label for="date-to"></label><input class="datepicker-input" id="date-to" name="end_at"
+                                                            th:value="${#dates.format(#dates.createNow(), 'dd MMMM yyyy ')}"
+                                                            type="text">
+                        <div class="datepicker-value" id="date-to-value"></div>
+                    </div>
+
+                </div>
             </div>
             <h3 style="color: #ff0000" th:text="${msg}"></h3>
-
             <div class="form-footer">
-                <div class="rate"><h1 th:text="${left != null} ? ${left} : '1base/quote'"></h1></div>
-                <input class="reset-section-container-form-login" type="submit" value="Exchange"/>
 
-                <div class="rate"><h1 th:text="${right != null} ? ${right} : '1quote/base'"></h1></div>
+                <input class="reset-section-container-form-login" type="submit" value="Show Rates"/>
+
             </div>
-            <button type="button" class="btn btn-light"><a th:href="@{/rates}">TestRates</a></button>
         </form>
+        <a th:href="@{/main-page-authorized}" class="reset-section-container-form-login button-rates">Go back</a>
+
     </div>
-
 </section>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"

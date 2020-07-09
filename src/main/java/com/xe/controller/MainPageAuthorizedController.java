@@ -52,10 +52,6 @@ public class MainPageAuthorizedController {
         return new Exchange();
     }
 
-    @ModelAttribute("obj")
-    public ResponseByPeriod create2() {
-        return new ResponseByPeriod();
-    }
 
     @GetMapping
     public String get(HttpServletRequest req) {
@@ -101,20 +97,7 @@ public class MainPageAuthorizedController {
         return "main-page-authorized";
     }
 
-    @PostMapping("rates")
-    public String post_show_rates(@RequestParam("start_at") String a,
-                                  @RequestParam("end_at") String b,
-                                  @RequestParam("base") String fd,
-                                  @RequestParam("quote") String q,
-//                                  @ModelAttribute("obj") RateByPeriod rbp,
-                                  Model model) throws ParseException {
 
-        ResponseByPeriod rbp = exchangeService.get_rate_for_specific_interval(a, b, fd, q);
-        log.info(rbp);
-
-        model.addAttribute("obj", rbp);
-        return "rates";
-    }
 
     @ExceptionHandler({Exception.class, NullPointerException.class})
     public String handleErr2(RedirectAttributes ra, Exception ex) {

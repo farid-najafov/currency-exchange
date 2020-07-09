@@ -33,32 +33,29 @@
         <h3 class="exchange-content-heading">
             Exchange rate dates
         </h3>
-        <p class="exchange-content-subheading"
-           th:text="${obj.getStart_at()+'/' + obj.getEnd_at()}">
+        <p class="exchange-content-subheading"  th:each="list: ${obj}"
+           th:text="${list.getStart_date()+'/' + list.getEnd_date()}">
         </p>
         <ul class="rates-list">
-            <li class="rates-item" th:each=" rates : ${obj.getRates()}">
-                <div class="rate" th:each="value : ${rates.getValue()}"
-                     th:text="${ '1' + obj.getBase() + ' / ' + #numbers.formatDecimal(value.getValue(), 1, 'COMMA', 4, 'POINT') + value.getKey()}">
+            <li class="rates-item" th:each="rates : ${obj} ">
+                <div class="rate"
+                     th:text="${ '1' + rates.getBase() + ' / ' + #numbers.formatDecimal(rates.getRate(), 1, 'COMMA', 4, 'POINT') + rates.getQuote()}">
                     1USD/0.89EUR
                 </div>
-                <p th:text="${rates.getKey()}" class="rate-date">
+                <p th:text="${rates.getCurrent_day()}" class="rate-date">
                 </p>
-                <div class="rate" th:each="value : ${rates.getValue()}"
-                     th:text=" ${'1' + value.getKey() + ' / ' +#numbers.formatDecimal(1/value.getValue(), 1, 'COMMA', 4, 'POINT')+ obj.getBase()}">
+                <div class="rate"
+                     th:text="${'1' + rates.getQuote() + ' / ' + #numbers.formatDecimal(1/rates.getRate(), 1, 'COMMA', 4, 'POINT')+ rates.getBase()}">
                     1EUR/1.12USD
                 </div>
             </li>
         </ul>
-        <a th:href="@{/main-page-authorized}" class="reset-section-container-form-login button-rates">Go
-            back</a>
-
+        <a th:href="@{/rates}" class="reset-section-container-form-login button-rates">Go back</a>
     </div>
 
 
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </body>
 
 
