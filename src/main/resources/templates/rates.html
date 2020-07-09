@@ -23,7 +23,8 @@
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <img class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}" alt="User Icon">
+            <a th:href="@{/history}"><img alt="User Icon" class="main-header-user-icon"
+                                          th:src="@{/img/user-icon-with-background.svg}"></a>
         </div>
     </div>
 </header>
@@ -33,8 +34,8 @@
         <h3 class="exchange-content-heading">
             Exchange rate dates
         </h3>
-        <p class="exchange-content-subheading"  th:each="list: ${obj}"
-           th:text="${list.getStart_date()+'/' + list.getEnd_date()}">
+        <p class="exchange-content-subheading"
+           th:text="${obj.get(0).getStart_date()+'/' + obj.get(0).getEnd_date()}">
         </p>
         <ul class="rates-list">
             <li class="rates-item" th:each="rates : ${obj} ">
@@ -50,7 +51,7 @@
                 </div>
             </li>
         </ul>
-        <a th:href="@{/rates}" class="reset-section-container-form-login button-rates">Go back</a>
+        <a class="reset-section-container-form-login button-rates" th:href="@{/main-page-rates}">Go back</a>
     </div>
 
 

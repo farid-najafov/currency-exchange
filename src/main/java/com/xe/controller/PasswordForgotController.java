@@ -43,13 +43,11 @@ public class PasswordForgotController {
         return new PasswordForgotDto();
     }
 
-
     @GetMapping
     public String showForgotPassword() {
         log.info("GET -> /forgot-password");
         return "forgot-password";
     }
-
 
     @PostMapping
     public String processForgotPasswordForm(
@@ -57,9 +55,7 @@ public class PasswordForgotController {
             BindingResult result,
             HttpServletRequest request) {
 
-        if (result.hasErrors()) {
-            return "forgot-password";
-        }
+        if (result.hasErrors()) return "forgot-password";
 
         Optional<User> user = userService.findByEmail(from.getEmail());
         if (!user.isPresent()) {

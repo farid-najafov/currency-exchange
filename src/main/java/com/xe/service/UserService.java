@@ -1,14 +1,11 @@
 package com.xe.service;
 
-
 import com.xe.entity.User;
-
 import com.xe.entity.api.Exchange;
 import com.xe.repo.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 
 @Service
 public class UserService {
@@ -40,6 +37,5 @@ public class UserService {
     public void updatePassword(String password, Long userId) {
         userRepository.updatePassword(password, userId);
     }
-
 
 }

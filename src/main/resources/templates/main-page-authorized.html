@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/main-page-authorized.css}">
     <link rel="stylesheet" th:href="@{/css/main-page.css}">
     <link rel="stylesheet" th:href="@{/css/custom-select.css}">
@@ -16,7 +18,6 @@
 <header class="main-header">
 
     <a class="main-header-logo" th:href="@{/}"><img alt="IBA Tech Academy" th:src="@{/img/iba-tech-logo-white.svg}"></a>
-    <h3 t></h3>
 
     <div class="main-header-wrapper">
         <div class="main-header-profile-wrapper">
@@ -27,7 +28,8 @@
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <img alt="User Icon" class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}">
+            <a th:href="@{/history}"><img alt="User Icon" class="main-header-user-icon"
+                                          th:src="@{/img/user-icon-with-background.svg}"></a>
         </div>
     </div>
 </header>
@@ -36,6 +38,8 @@
         <h3 class="exchange-content-heading">
             Exchange money
         </h3>
+        <a class="btn btn-danger" th:href="@{/main-page-rates}" type="button">Check historical rates</a>
+        <!--        <a th:href="@{/history}" type="button" class="btn btn-danger">Show user's exchange history</a>-->
 
         <form class="exchange-form" method="post">
 
@@ -99,7 +103,6 @@
 
                 <div class="rate"><h1 th:text="${right != null} ? ${right} : '1quote/base'"></h1></div>
             </div>
-            <button type="button" class="btn btn-light"><a th:href="@{/rates}">TestRates</a></button>
         </form>
     </div>
 

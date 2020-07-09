@@ -20,10 +20,6 @@ import java.util.Optional;
 @RequestMapping("/login")
 public class LoginController {
 
-    private static String fmt(Object... args) {
-        return String.format("Found user %s", args);
-    }
-
     private final UserService userService;
 
     public LoginController(UserService userService) {
@@ -46,7 +42,7 @@ public class LoginController {
                             Model model, HttpServletRequest req) {
 
         Optional<User> user = userService.findByEmailAndPassword(email, password);
-        log.info(fmt(user));
+        log.info(String.format("Found user %s", user));
 
         if (!user.isPresent()) {
             model.addAttribute("loginError", "Login credentials are incorrect, please try again");

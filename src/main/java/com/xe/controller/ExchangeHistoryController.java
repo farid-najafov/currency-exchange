@@ -1,6 +1,5 @@
 package com.xe.controller;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.xe.entity.User;
 import com.xe.repo.UserRepository;
@@ -15,7 +14,6 @@ import java.util.List;
 @RequestMapping("/history")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ExchangeHistoryController {
-
 
     private final UserRepository userRepository;
 

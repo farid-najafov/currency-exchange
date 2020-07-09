@@ -11,7 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,6 +26,10 @@ public class ExchangeService {
 
     public ExchangeService(RestTemplate rest) {
         this.rest = rest;
+    }
+
+    public String dateToSt(Date date) {
+        return new SimpleDateFormat("yyyy-MM-d").format(date);
     }
 
     public Exchange get_rate_for_specific_exchange(String baseCcy, String quoteCcy) {
@@ -44,9 +51,9 @@ public class ExchangeService {
 
     public Exchange get_rate_for_specific_date(String date, String baseCcy, String quoteCcy) throws ParseException {
 
-        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).parse(date);
+        Date parseDate = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).parse(date);
 
-        String fmt = new SimpleDateFormat("yyyy-MM-d").format(format);
+        String fmt = dateToSt(parseDate);
 
         String url = String.format("https://api.exchangeratesapi.io/%s?base=%s&symbols=%s", fmt, baseCcy, quoteCcy);
 
@@ -58,20 +65,17 @@ public class ExchangeService {
                 obj.getDate());
     }
 
-    public  List<RateByPeriod> get_rate_for_specific_interval(String starDate, String endDate, String baseCcy, String quoteCcy) throws ParseException {
+    public List<RateByPeriod> get_rate_for_specific_interval(Date starDate, Date endDate, String baseCcy, String quoteCcy) throws ParseException {
 
-        Date format = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(starDate);
-        String firstDate = new SimpleDateFormat("yyyy-MM-d").format(format);
-
-        Date format2 = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(endDate);
-        String secondDate = new SimpleDateFormat("yyyy-MM-d").format(format2);
+        String firstDate = dateToSt(starDate);
+        String secondDate = dateToSt(endDate);
 
         String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", firstDate, secondDate, baseCcy, quoteCcy);
 
         ResponseByPeriod obj = rest.getForObject(url, ResponseByPeriod.class);
-        log.info("RESPONSE BY PERIOD" + obj);
+        log.info(obj);
 
-       return IntStream.range(0, obj.getRates().size()).mapToObj(
+        return IntStream.range(0, obj.getRates().size()).mapToObj(
                 a -> {
                     List<String> current_dates = new ArrayList<>(obj.getRates().keySet());
                     return new RateByPeriod(
@@ -85,5 +89,4 @@ public class ExchangeService {
                 }
         ).collect(Collectors.toList());
     }
-
 }
