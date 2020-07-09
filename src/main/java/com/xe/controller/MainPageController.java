@@ -1,7 +1,7 @@
 package com.xe.controller;
 
-import com.xe.enums.XCurrency;
 import com.xe.entity.api.Exchange;
+import com.xe.enums.XCurrency;
 import com.xe.service.ExchangeService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -29,10 +29,6 @@ public class MainPageController {
         this.qService = qService;
     }
 
-    private static String fmt(String format, Object... args) {
-        return String.format(format, args);
-    }
-
     @ModelAttribute("currencies")
     public List<XCurrency> addCurrenciesToModel(Model model) {
         List<XCurrency> collect = Arrays.stream(XCurrency.values())
@@ -46,7 +42,6 @@ public class MainPageController {
         return new Exchange();
     }
 
-
     @GetMapping
     public String showMainPage() {
         log.info("GET -> /main-page");
@@ -58,24 +53,21 @@ public class MainPageController {
                             @RequestParam("quote") String quoteCcy,
                             @RequestParam(value = "amount", defaultValue = "1") String value,
                             @ModelAttribute("object") Exchange q,
-                            Model model) {
-
-        log.info(fmt("Base: %s, Quote: %s", baseCcy, quoteCcy));
-        log.info(fmt("value: %s", value));
+                            Model md) {
 
         q = qService.get_rate_for_specific_exchange(baseCcy, quoteCcy);
-        log.info(fmt("RATE: %s", q.rate));
+        log.info(String.format("Base: %s, Quote: %s, Value: %s, RATE: %s", baseCcy, quoteCcy, value, q.rate));
 
         Double calc = Double.parseDouble(value) * q.rate;
 
-        BigDecimal bigDecimal = new BigDecimal(value);
-        String s = bigDecimal.setScale(2, RoundingMode.CEILING).toPlainString();
+        BigDecimal bd = new BigDecimal(value);
+        String s = bd.setScale(2, RoundingMode.CEILING).toPlainString();
 
-        model.addAttribute("object", q);
-        model.addAttribute("amount", s);
-        model.addAttribute("result", df.format(calc));
-        model.addAttribute("left", df.format(q.rate));
-        model.addAttribute("right", df.format(1 / q.rate));
+        md.addAttribute("object", q);
+        md.addAttribute("amount", s);
+        md.addAttribute("result", df.format(calc));
+        md.addAttribute("left", df.format(q.rate));
+        md.addAttribute("right", df.format(1 / q.rate));
         return "main-page";
     }
 

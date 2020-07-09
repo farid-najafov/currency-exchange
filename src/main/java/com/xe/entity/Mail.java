@@ -12,5 +12,4 @@ public class Mail {
     private String subject;
     private Map<String, Object> model;
 
-
 }

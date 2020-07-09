@@ -5,9 +5,7 @@ import com.xe.entity.PasswordResetToken;
 import com.xe.entity.User;
 import com.xe.repo.PasswordResetTokenRepository;
 import com.xe.service.UserService;
-
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -57,13 +55,7 @@ public class PasswordResetController {
     public String handlePasswordReset(@Valid @ModelAttribute("passwordResetForm") PasswordResetDto form,
                                       BindingResult result,
                                       RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
-//            redirectAttributes.addFlashAttribute(BindingResult.class.getName() + ".passwordResetForm", result);
-//            redirectAttributes.addFlashAttribute("passwordResetForm", form);
-//            return "reset-password";
-            return "redirect:/reset-password?token=" + form.getToken();
-
-        }
+        if (result.hasErrors()) return "redirect:/reset-password?token=" + form.getToken();
 
         PasswordResetToken token = tokenRepository.findByToken(form.getToken());
         User user = token.getUser();

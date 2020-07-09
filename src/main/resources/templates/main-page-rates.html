@@ -16,7 +16,6 @@
 <header class="main-header">
 
     <a class="main-header-logo" th:href="@{/}"><img alt="IBA Tech Academy" th:src="@{/img/iba-tech-logo-white.svg}"></a>
-    <h3 t></h3>
 
     <div class="main-header-wrapper">
         <div class="main-header-profile-wrapper">
@@ -27,7 +26,8 @@
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <img alt="User Icon" class="main-header-user-icon" th:src="@{/img/user-icon-with-background.svg}">
+            <a th:href="@{/history}"><img alt="User Icon" class="main-header-user-icon"
+                                          th:src="@{/img/user-icon-with-background.svg}"></a>
         </div>
     </div>
 </header>
@@ -35,10 +35,10 @@
 
 <section class="exchange">
     <div class="exchange-content">
-        <h3 class="exchange-content-heading">Exchange money
+        <h3 class="exchange-content-heading">Check historical rates
         </h3>
 
-        <form class="exchange-form" method="post">
+        <form class="exchange-form" method="post" th:action="@{/main-page-rates/show-rates}">
 
             <div class="form-columns">
                 <div class="exchange-form-column">
@@ -81,23 +81,24 @@
                             <span class="select-name">
                                 From
                             </span>
-                        <label for="date-from"></label><input class="datepicker-input" id="date-from" name="start_at"
-                                                              th:value="${#dates.format(#dates.createNow(), 'dd MMMM yyyy ')}"
-                                                              type="text">
-                        <div class="datepicker-value" id="date-from-value"></div>
+                        <input class="datepicker-input" id="date-from1" name="start_at"
+
+                               type="text">
+                        <div class="datepicker-value" id="date-from-value1"></div>
                     </div>
+
 
                 </div>
                 <div class="exchange-form-column">
 
-                    <div class="datepicker-wrapper datepicker-wrapper-left" >
+                    <div class="datepicker-wrapper datepicker-wrapper-left">
                             <span class="select-name">
                                 To
                             </span>
-                        <label for="date-to"></label><input class="datepicker-input" id="date-to" name="end_at"
-                                                            th:value="${#dates.format(#dates.createNow(), 'dd MMMM yyyy ')}"
-                                                            type="text">
-                        <div class="datepicker-value" id="date-to-value"></div>
+                        <input class="datepicker-input" id="date-to1" name="end_at"
+
+                               type="text">
+                        <div class="datepicker-value" id="date-to-value1"></div>
                     </div>
 
                 </div>
@@ -106,10 +107,13 @@
             <div class="form-footer">
 
                 <input class="reset-section-container-form-login" type="submit" value="Show Rates"/>
+            </div>
+            <div class="form-footer">
 
+                <a style="margin-top: 5px" th:href="@{/main-page-authorized}">Go back</a>
             </div>
         </form>
-        <a th:href="@{/main-page-authorized}" class="reset-section-container-form-login button-rates">Go back</a>
+
 
     </div>
 </section>

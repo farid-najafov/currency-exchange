@@ -8,8 +8,10 @@ import java.util.SortedMap;
 
 @Data
 public class ResponseByPeriod {
+
     SortedMap<String, Map<XCurrency, Double>> rates;
     String start_at;
     String base;
     String end_at;
+
 }
