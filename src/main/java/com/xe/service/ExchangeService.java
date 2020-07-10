@@ -73,6 +73,7 @@ public class ExchangeService {
         String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", firstDate, secondDate, baseCcy, quoteCcy);
 
         ResponseByPeriod obj = rest.getForObject(url, ResponseByPeriod.class);
+
         log.info(obj);
 
         return IntStream.range(0, obj.getRates().size()).mapToObj(
