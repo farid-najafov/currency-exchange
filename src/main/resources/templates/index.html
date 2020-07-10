@@ -27,7 +27,7 @@
             <p class="login-section-container-description">To keep connected with us please login with personal
                 information by email address and password</p>
             <form method="post" class="login-section-container-form"
-                  th:object="${user}">
+            >
 
                 <!-- Place for messages: error, alert etc ... -->
                 <div class="form-group">
@@ -48,19 +48,19 @@
                     <label for="email"></label>
                     <input class="login-section-container-form-input" id="email" placeholder="Email address"
                            type="email"
-                           th:name="email" th:value="${user.email}">
+                           th:name="email"  required autofocus="autofocus">
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
                     <label for="password"></label>
                     <input class="login-section-container-form-input" id="password" placeholder="Password"
                            type="password"
-                           th:name="password" th:value="${user.password}">
+                           th:name="password" required >
                 </div>
                 <div class="login-section-container-options">
                     <div class="login-section-container-options-wrapper">
                         <label class="login-section-container-options-checkbox-wrapper">Remember Me
-                            <input checked class="login-section-container-options-old-checkbox" name="check"
+                            <input checked class="login-section-container-options-old-checkbox" name="remember-me"
                                    type="checkbox" value="rm">
                             <span class="login-section-container-options-checkmark"></span>
                         </label>

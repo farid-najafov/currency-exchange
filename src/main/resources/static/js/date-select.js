@@ -17,7 +17,7 @@ $("#date-from")
             );
         },
     })
-  .position({ my: "center" });
+    .position({ my: "center" });
 $("#date-to").datepicker({
     dateFormat: "dd MMMM yyyy",
     beforeShow: function () {

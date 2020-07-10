@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -22,7 +22,7 @@
     <div class="main-header-wrapper">
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
-                <span class="main-header-username" th:text="${session.user.fullName}"></span>
+                <span class="main-header-username" th:text="${#authentication.getPrincipal().getFullName()}"></span>
                 <div class="log-out-block">
                     <img alt="Log out" th:src="@{/img/log-out-icon.svg}">
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
@@ -103,7 +103,6 @@
 
                 <div class="rate"><h1 th:text="${right != null} ? ${right} : '1quote/base'"></h1></div>
             </div>
-            <button type="button" class="btn btn-light"><a th:href="@{/rates}">TestRates</a></button>
         </form>
     </div>
 

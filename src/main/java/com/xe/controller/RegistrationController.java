@@ -58,6 +58,7 @@ public class RegistrationController {
         if (result.hasErrors()) return "registration";
 
         userService.addUser(user);
+
         ra.addFlashAttribute("success","Registration is successful, please log in to continue");
         log.info("Successfully registered");
 

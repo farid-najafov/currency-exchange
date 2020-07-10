@@ -45,11 +45,28 @@ public class User {
     )
     Collection<Exchange> exchanges;
 
-    public User(String name, String password, String matchingPassword, String mail, Collection<Exchange> exchanges) {
+
+    private String roles;
+
+    public User(String name, String password, String matchingPassword, String mail, Collection<Exchange> exchanges, String... roles) {
         this.fullName = name;
         this.password = password;
         this.email = mail;
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
+        setRoles(roles);
+    }
+
+
+    @Transient
+    private final static String DELIMITER = ":";
+
+    public String[] getRoles() {
+        return roles == null || roles.isEmpty() ? new String[]{}
+                : roles.split(DELIMITER);
+    }
+
+    public void setRoles(String[] roles) {
+        this.roles = String.join(DELIMITER, roles);
     }
 }

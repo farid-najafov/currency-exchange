@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.Principal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +25,7 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -56,13 +58,11 @@ public class MainPageAuthorizedController {
 
 
     @GetMapping
-    public String get(HttpServletRequest req) {
+    public String get() {
 
-        HttpSession session = req.getSession(false);
         log.info("GET -> /main-page-authorized ");
 
-        return session.getAttribute("user") == null ?
-                "error-404" : "main-page-authorized";
+        return "main-page-authorized";
     }
 
 
@@ -71,7 +71,7 @@ public class MainPageAuthorizedController {
                                     @RequestParam("single-date") String date,
                                     @RequestParam("base") String baseCcy,
                                     @RequestParam("quote") String quoteCcy,
-                                    HttpServletRequest req, Model md) throws ParseException {
+                                     Model md, Principal principal) throws ParseException {
 
         log.info("Post -> /main-page-authorized");
 
@@ -90,8 +90,7 @@ public class MainPageAuthorizedController {
         ex.setAmount(Double.parseDouble(amount));
         ex.setResult(Double.parseDouble(df.format(calc)));
 
-        User user = (User) req.getSession().getAttribute("user");
-        userService.addExchangeTest(user.getId(), ex);
+        userService.addExchange(principal.getName(),ex);
 
         md.addAttribute("object", ex);
         md.addAttribute("amount", amount);

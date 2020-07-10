@@ -53,13 +53,11 @@ public class RatesController {
     }
 
     @GetMapping
-    public String get(HttpServletRequest req) {
+    public String get() {
 
-        HttpSession session = req.getSession(false);
         log.info("GET -> /main-page-authorized ");
 
-        return session.getAttribute("user") == null ?
-                "error-404" : "main-page-rates";
+        return  "main-page-rates";
     }
 
     @SneakyThrows
