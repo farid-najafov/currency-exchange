@@ -1,4 +1,4 @@
-package com.xe.security.jwt;
+package com.xe.config.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -34,19 +34,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         log.info("JWT ATTEMPT AUTHENTICATION ");
 
-
 //          TODO Make It User or XUSERDETAILS
-        UserNameAndPasswordAuthRequest authenticationRequest = new ObjectMapper()
+        UserNameAndPasswordAuthRequest authRequest = new ObjectMapper()
                 .readValue(request.getInputStream(), UserNameAndPasswordAuthRequest.class);
 
         Map<String, String[]> parameterMap = request.getParameterMap();
         log.info("PARAMETR MAP " + parameterMap);
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                authenticationRequest.getEmail(),
-                authenticationRequest.getPassword()
+                authRequest.getEmail(),
+                authRequest.getPassword()
         );
-        Authentication authenticate = authenticationManager.authenticate(authentication);
-        return authenticate;
+        return authenticationManager.authenticate(authentication);
     }
 
     @Override

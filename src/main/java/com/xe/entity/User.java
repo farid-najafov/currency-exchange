@@ -45,7 +45,6 @@ public class User {
     )
     Collection<Exchange> exchanges;
 
-
     private String roles;
 
     public User(String name, String password, String matchingPassword, String mail, Collection<Exchange> exchanges, String... roles) {
@@ -56,7 +55,6 @@ public class User {
         this.exchanges = exchanges;
         setRoles(roles);
     }
-
 
     @Transient
     private final static String DELIMITER = ":";

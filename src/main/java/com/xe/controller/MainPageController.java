@@ -52,28 +52,27 @@ public class MainPageController {
     public String get_rates(@RequestParam("base") String baseCcy,
                             @RequestParam("quote") String quoteCcy,
                             @RequestParam(value = "amount", defaultValue = "1") String value,
-                            @ModelAttribute("object") Exchange q,
                             Model md) {
 
-        q = qService.get_rate_for_specific_exchange(baseCcy, quoteCcy);
-        log.info(String.format("Base: %s, Quote: %s, Value: %s, RATE: %s", baseCcy, quoteCcy, value, q.rate));
+        Exchange ex = qService.get_rate_for_specific_exchange(baseCcy, quoteCcy);
+        log.info(String.format("Base: %s, Quote: %s, Value: %s, RATE: %s", baseCcy, quoteCcy, value, ex.rate));
 
-        Double calc = Double.parseDouble(value) * q.rate;
+        double calc = Double.parseDouble(value) * ex.rate;
 
         BigDecimal bd = new BigDecimal(value);
         String s = bd.setScale(2, RoundingMode.CEILING).toPlainString();
 
-        md.addAttribute("object", q);
+        md.addAttribute("object", ex);
         md.addAttribute("amount", s);
         md.addAttribute("result", df.format(calc));
-        md.addAttribute("left", df.format(q.rate));
-        md.addAttribute("right", df.format(1 / q.rate));
+        md.addAttribute("left", df.format(ex.rate));
+        md.addAttribute("right", df.format(1 / ex.rate));
         return "main-page";
     }
 
     @ExceptionHandler({Exception.class})
-    public RedirectView handleErr2(RedirectAttributes ra) {
-        ra.addFlashAttribute("msg",  "Please choose correct details to convert");
+    public RedirectView handleErr(RedirectAttributes ra) {
+        ra.addFlashAttribute("msg", "Please choose correct details to convert");
         return new RedirectView("/main-page");
     }
 }

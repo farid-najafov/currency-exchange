@@ -1,6 +1,5 @@
 package com.xe.controller;
 
-import com.xe.entity.User;
 import com.xe.entity.api.Exchange;
 import com.xe.enums.XCurrency;
 import com.xe.exception.InvalidPeriodException;
@@ -12,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
@@ -25,7 +22,6 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -56,12 +52,9 @@ public class MainPageAuthorizedController {
         return new Exchange();
     }
 
-
     @GetMapping
     public String get() {
-
         log.info("GET -> /main-page-authorized ");
-
         return "main-page-authorized";
     }
 
@@ -71,7 +64,7 @@ public class MainPageAuthorizedController {
                                     @RequestParam("single-date") String date,
                                     @RequestParam("base") String baseCcy,
                                     @RequestParam("quote") String quoteCcy,
-                                     Model md, Principal principal) throws ParseException {
+                                    Model md, Principal principal) throws ParseException {
 
         log.info("Post -> /main-page-authorized");
 
