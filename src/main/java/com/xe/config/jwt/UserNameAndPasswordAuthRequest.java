@@ -1,5 +1,4 @@
-package com.xe.security.jwt;
-
+package com.xe.config.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

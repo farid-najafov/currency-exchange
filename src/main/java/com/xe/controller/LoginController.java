@@ -10,13 +10,9 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class LoginController {
 
-
-
     @GetMapping("login")
     public String getLogin() {
-
         log.info("GET -> /login");
-
         return "index";
     }
 

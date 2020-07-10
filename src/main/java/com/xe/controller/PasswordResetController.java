@@ -54,8 +54,12 @@ public class PasswordResetController {
     @Transactional
     public String handlePasswordReset(@Valid @ModelAttribute("passwordResetForm") PasswordResetDto form,
                                       BindingResult result,
-                                      RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) return "redirect:/reset-password?token=" + form.getToken();
+                                      RedirectAttributes ra) {
+        if (result.hasErrors()) {
+            ra.addFlashAttribute("error", "Please adhere password policy: \n" +
+                    "(Password must be at least 3 characters long and fields must match)");
+            return "redirect:/reset-password?token=" + form.getToken();
+        }
 
         PasswordResetToken token = tokenRepository.findByToken(form.getToken());
         User user = token.getUser();
@@ -63,7 +67,7 @@ public class PasswordResetController {
         userService.updatePassword(updatedPassword, user.getId());
         tokenRepository.delete(token);
 
-        redirectAttributes.addFlashAttribute("success","Password successfully reset, please log in to continue");
+        ra.addFlashAttribute("success", "Password successfully reset, please log in to continue");
         log.info("Successfully registered");
 
         return "redirect:/login";

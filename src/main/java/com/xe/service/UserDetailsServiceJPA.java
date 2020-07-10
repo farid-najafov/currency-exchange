@@ -27,6 +27,7 @@ private final UserRepository repo;
                 user.getRoles()
         );
     }
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return repo.findByEmail(s).

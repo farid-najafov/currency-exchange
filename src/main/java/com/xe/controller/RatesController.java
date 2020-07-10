@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -54,9 +52,7 @@ public class RatesController {
 
     @GetMapping
     public String get() {
-
         log.info("GET -> /main-page-authorized ");
-
         return  "main-page-rates";
     }
 
