@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th >base_ccy</th>
+        <th >quote_ccy</th>
+        <th >ate</th>
+        <th >amount</th>
+        <th >result</th>
+        <th >date</th>
+        <th >localDate</th>
+    </tr>
+    </thead>
+    <tbody  th:each="list : ${user.getExchanges()}">
+
+    <tr>
+        <td th:text="${list.getBase_ccy()}">
+
+        </td>
+        <td th:text="${list.getQuote_ccy()}">
+
+        </td>
+        <td th:text="${list.getRate()}">
+
+        </td>
+        <td th:text="${list.getAmount()}">
+
+        </td>
+        <td th:text="${list.getResult()}">
+
+        </td>
+        <td th:text="${list.getDate()}">
+
+        </td>
+        <td th:text="${list.getLocalDate()}">
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
