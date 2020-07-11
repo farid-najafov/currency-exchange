@@ -48,7 +48,10 @@
                     <label for="email"></label>
                     <input class="login-section-container-form-input" id="email" placeholder="Email address"
                            type="email"
-                           th:name="email"  required autofocus="autofocus">
+                           th:name="email"  required autofocus="autofocus"
+                    >
+
+
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">
@@ -60,8 +63,8 @@
                 <div class="login-section-container-options">
                     <div class="login-section-container-options-wrapper">
                         <label class="login-section-container-options-checkbox-wrapper">Remember Me
-                            <input checked class="login-section-container-options-old-checkbox" name="remember-me"
-                                   type="checkbox" value="rm">
+                            <input class="login-section-container-options-old-checkbox" name="remember-me"
+                                   type="checkbox" >
                             <span class="login-section-container-options-checkmark"></span>
                         </label>
                     </div>
