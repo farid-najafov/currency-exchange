@@ -1,16 +1,13 @@
 package com.xe.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.xe.entity.User;
 import com.xe.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/history")
