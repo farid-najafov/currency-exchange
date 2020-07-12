@@ -58,7 +58,7 @@ public class RegistrationController {
 
         userService.addUser(user);
 
-        ra.addFlashAttribute("success","Registration is successful, please log in to continue");
+        ra.addFlashAttribute("success", "Registration is successful, please log in to continue");
         log.info("Successfully registered");
 
         return "redirect:/login";

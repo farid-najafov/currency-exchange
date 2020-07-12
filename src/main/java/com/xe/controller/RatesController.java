@@ -58,14 +58,14 @@ public class RatesController {
 
     @SneakyThrows
     @PostMapping("show-rates")
-    public String post_show_rates(@RequestParam("start_at") String a,
-                                  @RequestParam("end_at") String b,
-                                  @RequestParam("base") String fd,
-                                  @RequestParam("quote") String q,
+    public String post_show_rates(@RequestParam("start_at") String start,
+                                  @RequestParam("end_at") String end,
+                                  @RequestParam("base") String base,
+                                  @RequestParam("quote") String quote,
                                   Model model) {
 
-        Date fmtS = parseDate(a);
-        Date fmtE = parseDate(b);
+        Date fmtS = parseDate(start);
+        Date fmtE = parseDate(end);
         LocalDate d1 = dateToLD(fmtS);
         LocalDate d2 = dateToLD(fmtE);
         long period = ChronoUnit.DAYS.between(d1, d2);
@@ -73,15 +73,15 @@ public class RatesController {
         if (period > 10 || d1.isAfter(LocalDate.now()) || d1.isAfter(d2))
             throw new InvalidPeriodException("Invalid Period exception");
 
-        List<RateByPeriod> list = exchangeService.get_rate_for_specific_interval(fmtS, fmtE, fd, q);
-        log.info("LIST OF RATE BY PERIOD" + list);
+        List<RateByPeriod> list = exchangeService.get_rate_for_specific_interval(fmtS, fmtE, base, quote);
+        log.info(String.format("LIST OF RATES BY PERIOD %s", list));
 
         model.addAttribute("obj", list);
         return "rates";
     }
 
     @ExceptionHandler({Exception.class, NullPointerException.class, InvalidPeriodException.class})
-    public String handleErr2(RedirectAttributes ra, Exception ex) {
+    public String handleError(RedirectAttributes ra, Exception ex) {
 
         if (ex.getClass().getSimpleName().equals("InvalidPeriodException")) {
             ra.addFlashAttribute("msg", "Please choose valid period \n" +

@@ -6,8 +6,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.concurrent.TimeUnit;
-
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -17,9 +15,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**","/reset-password", "/forgot-password", "/js/**",
-                        "/img/**",
-                        "/main-page", "/register", "/h2/**").permitAll()
+                .antMatchers("/", "/reset-password", "/forgot-password", "/main-page", "/register",
+                        "/css/**", "/js/**", "/img/**", "/h2/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -37,8 +34,5 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
 
         http.headers().frameOptions().disable();
-
     }
-
-
 }

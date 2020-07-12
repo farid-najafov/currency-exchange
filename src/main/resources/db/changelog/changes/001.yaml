@@ -1,0 +1,190 @@
+databaseChangeLog:
+    - changeSet:
+          id: 1594583062174-1
+          author: Farid (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: users_pkey
+                              name: user_id
+                              type: BIGINT
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: email
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: full_name
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: password
+                              type: VARCHAR(255)
+                        - column:
+                              name: roles
+                              type: VARCHAR(255)
+                    tableName: users
+    - changeSet:
+          id: 1594583062174-2
+          author: Farid (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: password_reset_token_pkey
+                              name: id
+                              type: BIGINT
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: expiry_date
+                              type: TIMESTAMP WITHOUT TIME ZONE
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: token
+                              type: VARCHAR(255)
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: user_id
+                              type: BIGINT
+                    tableName: password_reset_token
+    - changeSet:
+          id: 1594583062174-3
+          author: Farid (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              autoIncrement: true
+                              constraints:
+                                  nullable: false
+                                  primaryKey: true
+                                  primaryKeyName: exchanges_pkey
+                              name: exchange_id
+                              type: INTEGER
+                        - column:
+                              name: amount
+                              type: FLOAT8
+                        - column:
+                              name: base
+                              type: VARCHAR(255)
+                        - column:
+                              name: date
+                              type: TIMESTAMP WITHOUT TIME ZONE
+                        - column:
+                              name: local_date
+                              type: date
+                        - column:
+                              name: quote
+                              type: VARCHAR(255)
+                        - column:
+                              name: rate
+                              type: FLOAT8
+                        - column:
+                              name: result
+                              type: FLOAT8
+                    tableName: exchanges
+    - changeSet:
+          id: 1594583062174-4
+          author: Farid (generated)
+          changes:
+              - createTable:
+                    columns:
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: us_id
+                              type: BIGINT
+                        - column:
+                              constraints:
+                                  nullable: false
+                              name: ex_id
+                              type: INTEGER
+                    tableName: us_ex
+    - changeSet:
+          id: 1594583062174-5
+          author: Farid (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: user_id
+                    baseTableName: password_reset_token
+                    constraintName: fk83nsrttkwkb6ym0anu051mtxn
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: users
+                    validate: true
+    - changeSet:
+          id: 1594583062174-6
+          author: Farid (generated)
+          changes:
+              - addUniqueConstraint:
+                    columnNames: token
+                    constraintName: uk_g0guo4k8krgpwuagos61oc06j
+                    tableName: password_reset_token
+    - changeSet:
+          id: 1594583062174-7
+          author: Farid (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: ex_id
+                    baseTableName: us_ex
+                    constraintName: fkh3wy6o729heghfp72eh5n8hxs
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: exchange_id
+                    referencedTableName: exchanges
+                    validate: true
+    - changeSet:
+          id: 1594583062174-8
+          author: Farid (generated)
+          changes:
+              - addForeignKeyConstraint:
+                    baseColumnNames: us_id
+                    baseTableName: us_ex
+                    constraintName: fkcp1n54agbwi399q8kse8p3rhn
+                    deferrable: false
+                    initiallyDeferred: false
+                    onDelete: NO ACTION
+                    onUpdate: NO ACTION
+                    referencedColumnNames: user_id
+                    referencedTableName: users
+                    validate: true
+    - changeSet:
+          id: 1594583062174-9
+          author: Farid (generated)
+          changes:
+              - addUniqueConstraint:
+                    columnNames: ex_id
+                    constraintName: uk_233rivign7nh8kchhfbpj5x03
+                    tableName: us_ex
+    - changeSet:
+          id: 1594583062174-10
+          author: Farid (generated)
+          changes:
+              - createSequence:
+                    cacheSize: 1
+                    cycle: false
+                    dataType: bigint
+                    incrementBy: 1
+                    maxValue: 9223372036854775807
+                    minValue: 1
+                    sequenceName: hibernate_sequence
+                    startValue: 1
+

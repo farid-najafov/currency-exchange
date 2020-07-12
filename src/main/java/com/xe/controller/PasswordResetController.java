@@ -28,7 +28,7 @@ public class PasswordResetController {
         this.tokenRepository = tokenRepository;
     }
 
-    @ModelAttribute("passwordResetFrom")
+    @ModelAttribute("passwordResetForm")
     public PasswordResetDto passwordReset() {
         return new PasswordResetDto();
     }
@@ -38,6 +38,7 @@ public class PasswordResetController {
                                            Model model) {
 
         PasswordResetToken resetToken = tokenRepository.findByToken(token);
+
         if (resetToken == null) {
             model.addAttribute("error","Could not find password reset token.");
         } else if (resetToken.isExpired()) {
@@ -46,7 +47,7 @@ public class PasswordResetController {
             model.addAttribute("token", resetToken.getToken());
         }
 
-        model.addAttribute("passwordResetFrom", new PasswordResetDto());
+        model.addAttribute("passwordResetForm", new PasswordResetDto());
         return "reset-password";
     }
 
@@ -55,8 +56,9 @@ public class PasswordResetController {
     public String handlePasswordReset(@Valid @ModelAttribute("passwordResetForm") PasswordResetDto form,
                                       BindingResult result,
                                       RedirectAttributes ra) {
+
         if (result.hasErrors()) {
-            ra.addFlashAttribute("error", "Please adhere password policy: \n" +
+            ra.addFlashAttribute("error", "Please follow the password policy: \n" +
                     "(Password must be at least 3 characters long and fields must match)");
             return "redirect:/reset-password?token=" + form.getToken();
         }

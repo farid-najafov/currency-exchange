@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -28,10 +28,13 @@
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <span class="main-header-username" ></span><br><br>
-            <div class="log-out-block">
-                <a class="log-out-btn" th:href="@{/history}" >History</a>
+            <div class="main-header-profile-credentials">
+                <span class="main-header-username"></span>
+                <div class="log-out-block">
+                    <a class="log-out-btn" th:href="@{/history}">History</a>
+                </div>
             </div>
+
         </div>
     </div>
 </header>

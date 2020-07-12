@@ -58,15 +58,12 @@ public class MainPageAuthorizedController {
         return "main-page-authorized";
     }
 
-
     @PostMapping
     public String post_with_history(@RequestParam(value = "amount", defaultValue = "1") String value,
                                     @RequestParam("single-date") String date,
                                     @RequestParam("base") String baseCcy,
                                     @RequestParam("quote") String quoteCcy,
                                     Model md, Principal principal) throws ParseException {
-
-        log.info("Post -> /main-page-authorized");
 
         LocalDate d = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(date)
                 .toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -97,6 +94,7 @@ public class MainPageAuthorizedController {
 
     @ExceptionHandler({Exception.class, NullPointerException.class, InvalidPeriodException.class})
     public String handleErr(RedirectAttributes ra, Exception ex) {
+
         if (ex.getClass().getSimpleName().equals("InvalidPeriodException")) {
             ra.addFlashAttribute("msg", "Please choose correct date");
             return "redirect:/main-page-authorized";

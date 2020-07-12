@@ -39,8 +39,6 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-
-
     public void updatePassword(String password, Long userId) {
         userRepository.updatePassword(enc.encode(password), userId);
     }

@@ -34,17 +34,17 @@ public class ExchangeService {
 
     public Exchange get_rate_for_specific_exchange(String baseCcy, String quoteCcy) {
         String url = String.format("https://api.exchangeratesapi.io/latest?base=%s", baseCcy);
-        QResponse forObject = rest.getForObject(url, QResponse.class);
+        QResponse resp = rest.getForObject(url, QResponse.class);
 
-        return forObject.getRates().entrySet().stream().
+        return resp.getRates().entrySet().stream().
                 filter(a1 -> a1.getKey().name().equals(quoteCcy)).
                 map(a1 -> new Exchange(
-                        forObject.getBase(),
-                        forObject.getRates().keySet().stream().
+                        resp.getBase(),
+                        resp.getRates().keySet().stream().
                                 filter(s -> s.name().equals(quoteCcy)).
                                 findFirst().orElse(null),
                         Double.parseDouble(a1.getValue()),
-                        forObject.getDate()
+                        resp.getDate()
 
                 )).findFirst().orElse(null);
     }
@@ -52,20 +52,18 @@ public class ExchangeService {
     public Exchange get_rate_for_specific_date(String date, String baseCcy, String quoteCcy) throws ParseException {
 
         Date parseDate = new SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).parse(date);
-
         String fmt = dateToSt(parseDate);
-
         String url = String.format("https://api.exchangeratesapi.io/%s?base=%s&symbols=%s", fmt, baseCcy, quoteCcy);
 
-        QResponse obj = rest.getForObject(url, QResponse.class);
+        QResponse resp = rest.getForObject(url, QResponse.class);
 
-        return new Exchange(obj.getBase(),
-                obj.getRates().keySet().stream().findFirst().orElse(XCurrency.EUR),
-                Double.parseDouble(obj.getRates().get(XCurrency.valueOf(quoteCcy))),
-                obj.getDate());
+        return new Exchange(resp.getBase(),
+                resp.getRates().keySet().stream().findFirst().orElse(XCurrency.EUR),
+                Double.parseDouble(resp.getRates().get(XCurrency.valueOf(quoteCcy))),
+                resp.getDate());
     }
 
-    public List<RateByPeriod> get_rate_for_specific_interval(Date starDate, Date endDate, String baseCcy, String quoteCcy) throws ParseException {
+    public List<RateByPeriod> get_rate_for_specific_interval(Date starDate, Date endDate, String baseCcy, String quoteCcy) {
 
         String firstDate = dateToSt(starDate);
         String secondDate = dateToSt(endDate);
@@ -73,8 +71,6 @@ public class ExchangeService {
         String url = String.format("https://api.exchangeratesapi.io/history?start_at=%s&end_at=%s&base=%s&symbols=%s", firstDate, secondDate, baseCcy, quoteCcy);
 
         ResponseByPeriod obj = rest.getForObject(url, ResponseByPeriod.class);
-
-        log.info(obj);
 
         return IntStream.range(0, obj.getRates().size()).mapToObj(
                 a -> {
