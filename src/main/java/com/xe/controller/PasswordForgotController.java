@@ -64,8 +64,10 @@ public class PasswordForgotController {
         }
 
         PasswordResetToken token = new PasswordResetToken();
+
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user.orElseThrow(() -> {throw new UserNotFoundException("User not found ");}));
+
         token.setExpiryDate(10);
         tokenRepository.save(token);
 
@@ -82,6 +84,7 @@ public class PasswordForgotController {
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         model.put("resetUrl", url + "/reset-password?token=" + token.getToken());
         mail.setModel(model);
+
         emailService.sendEmail(mail);
 
         return "redirect:/forgot-password?success";

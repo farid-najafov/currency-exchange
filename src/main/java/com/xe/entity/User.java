@@ -53,7 +53,8 @@ public class User {
         this.email = mail;
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
-        setRoles(roles);
+        this.roles ="USER";
+//        setRoles(roles);
     }
 
     @Transient
@@ -64,7 +65,7 @@ public class User {
                 : roles.split(DELIMITER);
     }
 
-    public void setRoles(String[] roles) {
+    public void setRoles(String roles) {
         this.roles = String.join(DELIMITER, roles);
     }
 }
