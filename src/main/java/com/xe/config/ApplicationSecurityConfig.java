@@ -27,21 +27,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .failureUrl("/login-error")
-                .defaultSuccessUrl("/main-page-authorized", true)
+                .defaultSuccessUrl("/main-page-authorized",true)
                 .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // https://docs.spring.io/spring-security/site/docs/4.2.12.RELEASE/apidocs/org/springframework/security/config/annotation/web/configurers/LogoutConfigurer.html
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login")
-                .and()
-                .rememberMe()
-                .rememberMeParameter("remember-me")
-                .rememberMeCookieName("rm")
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toDays(14));
+                .logoutSuccessUrl("/login");
 
         http.headers().frameOptions().disable();
 

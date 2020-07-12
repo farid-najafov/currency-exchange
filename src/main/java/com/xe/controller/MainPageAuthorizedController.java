@@ -97,7 +97,6 @@ public class MainPageAuthorizedController {
 
     @ExceptionHandler({Exception.class, NullPointerException.class, InvalidPeriodException.class})
     public String handleErr(RedirectAttributes ra, Exception ex) {
-
         if (ex.getClass().getSimpleName().equals("InvalidPeriodException")) {
             ra.addFlashAttribute("msg", "Please choose correct date");
             return "redirect:/main-page-authorized";

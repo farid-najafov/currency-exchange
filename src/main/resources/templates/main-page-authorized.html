@@ -28,11 +28,14 @@
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <a th:href="@{/history}"><img alt="User Icon" class="main-header-user-icon"
-                                          th:src="@{/img/user-icon-with-background.svg}"></a>
+            <span class="main-header-username" ></span><br><br>
+            <div class="log-out-block">
+                <a class="log-out-btn" th:href="@{/history}" >History</a>
+            </div>
         </div>
     </div>
 </header>
+
 <section class="exchange">
     <div class="exchange-content">
         <h3 class="exchange-content-heading">

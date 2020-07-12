@@ -24,6 +24,7 @@ public class UserService {
         String encode = enc.encode(user.getPassword());
         user.setPassword(encode);
         user.setMatchingPassword(encode);
+        user.setRoles("USER");
         userRepository.save(user);
     }
 
@@ -31,7 +32,7 @@ public class UserService {
         Optional<User> byEmail = userRepository.findByEmail(email);
         User user = byEmail.orElseThrow(RuntimeException::new);
         user.getExchanges().add(ex);
-        addUser(user);
+        userRepository.save(user);
     }
 
     public Optional<User> findByEmail(String email) {

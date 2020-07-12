@@ -42,9 +42,9 @@ public class TestInitialUser {
         String encode2 = enc.encode("222");
         String encode3 = enc.encode("333");
 
-        User user1 = new User("Ferid", encode, encode, "farid.r.najafov@gmail.com", f, "USER");
-        User user2 = new User("Aqil", encode2, encode2, "aqil99@gmail.com", aq, "USER");
-        User user3 = new User("Samir", encode3, encode3, "s@mail.ru", as, "USER");
+        User user1 = new User("Ferid", encode, encode, "farid.r.najafov@gmail.com", f);
+        User user2 = new User("Aqil", encode2, encode2, "aqil99@gmail.com", aq );
+        User user3 = new User("Samir", encode3, encode3, "s@mail.ru", as );
         repo.saveAll(Arrays.asList(user1, user2, user3));
     }
 }
