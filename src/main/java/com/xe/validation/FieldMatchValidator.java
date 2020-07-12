@@ -2,6 +2,7 @@ package com.xe.validation;
 
 
 import org.apache.commons.beanutils.BeanUtils;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -22,7 +23,8 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
             final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
             final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
             return firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
-        } catch (final Exception ignore) {}
+        } catch (final Exception ignore) {
+        }
         return true;
     }
 }

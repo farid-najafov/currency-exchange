@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/main-page")
 public class MainPageController {
 
-    private final ExchangeService qService;
     private static final DecimalFormat df = new DecimalFormat("0.0000");
+    private final ExchangeService qService;
 
     public MainPageController(ExchangeService qService) {
         this.qService = qService;

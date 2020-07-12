@@ -20,11 +20,9 @@ public class ExchangeHistoryController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String get(Principal principal, Model model) {
         model.addAttribute("user", userService.findByEmail(principal.getName()).orElse(null));
         return "history";
     }
-
 }

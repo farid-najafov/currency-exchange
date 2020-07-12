@@ -66,20 +66,26 @@ public class PasswordForgotController {
         PasswordResetToken token = new PasswordResetToken();
 
         token.setToken(UUID.randomUUID().toString());
-        token.setUser(user.orElseThrow(() -> {throw new UserNotFoundException("User not found ");}));
+        token.setUser(user.orElseThrow(() -> {
+            throw new UserNotFoundException("User not found ");
+        }));
 
         token.setExpiryDate(10);
         tokenRepository.save(token);
 
         Mail mail = new Mail();
         mail.setFrom("no-reply@memorynotfound.com");
-        mail.setTo(user.orElseThrow(() -> {throw new UserNotFoundException("User not found");}).getEmail());
+        mail.setTo(user.orElseThrow(() -> {
+            throw new UserNotFoundException("User not found");
+        }).getEmail());
         mail.setSubject("Password reset request");
 
         Map<String, Object> model = new HashMap<>();
 
         model.put("token", token);
-        model.put("user", user.orElseThrow(() -> {throw new UserNotFoundException("User not found");}));
+        model.put("user", user.orElseThrow(() -> {
+            throw new UserNotFoundException("User not found");
+        }));
         model.put("signature", "https://memorynotfound.com");
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         model.put("resetUrl", url + "/reset-password?token=" + token.getToken());

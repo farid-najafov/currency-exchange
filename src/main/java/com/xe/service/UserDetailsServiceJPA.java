@@ -10,12 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Configuration
 public class UserDetailsServiceJPA implements UserDetailsService {
-private final UserRepository repo;
+    private final UserRepository repo;
 
     public UserDetailsServiceJPA(UserRepository repo) {
         this.repo = repo;
     }
-
 
     public static XUserDetails mapper_to_XUser(User user) {
         return new XUserDetails(

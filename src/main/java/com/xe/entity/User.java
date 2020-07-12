@@ -54,7 +54,6 @@ public class User {
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
         this.roles ="USER";
-//        setRoles(roles);
     }
 
     @Transient
