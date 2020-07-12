@@ -10,7 +10,7 @@
     </parent>
     <groupId>ccy</groupId>
     <artifactId>currency-converter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.5</version>
     <name>currency-converter</name>
     <description>Currency Exchange App</description>
     <packaging>jar</packaging>
