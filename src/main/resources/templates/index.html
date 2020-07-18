@@ -26,8 +26,7 @@
 
             <p class="login-section-container-description">To keep connected with us please login with personal
                 information by email address and password</p>
-            <form method="post" class="login-section-container-form"
-            >
+            <form method="post" class="login-section-container-form">
 
                 <!-- Place for messages: error, alert etc ... -->
                 <div class="form-group">
@@ -86,13 +85,13 @@
                         <hr class="login-section-form-social-description-line">
                     </div>
                     <div class="login-section-form-social-icon-wrapper">
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/google-plus.svg}"
+                        <a th:href="@{/oauth2/authorization/google}" class="login-section-form-social-icon"><img th:src="@{/img/google-plus.svg}"
                                                                                 alt="Google Plus"></a>
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/facebook.svg}"
+                        <a th:href="@{/oauth2/authorization/facebook}" class="login-section-form-social-icon"><img th:src="@{/img/facebook.svg}"
                                                                                 alt="Facebook"></a>
-                        <a href="#" class="login-section-form-social-icon"><img th:src="@{/img/linked-in.svg}"
+                        <a th:href="@{/oauth2/authorization/linkedIn}" class="login-section-form-social-icon"><img th:src="@{/img/linked-in.svg}"
                                                                                 alt="Linked In"></a>
-                        <a href="#" class="login-section-form-social-icon mr0"><img th:src="@{/img/twitter.svg}"
+                        <a th:href="@{/oauth2/authorization/github}" class="login-section-form-social-icon mr0"><img th:src="@{/img/twitter.svg}"
                                                                                     alt="Twitter"></a>
                     </div>
                 </div>

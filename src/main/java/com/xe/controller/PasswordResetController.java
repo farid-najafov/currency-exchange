@@ -72,7 +72,7 @@ public class PasswordResetController {
         ra.addFlashAttribute("success", "Password successfully reset, please log in to continue");
         log.info("Successfully registered");
 
-        return "redirect:/login";
+        return "redirect:/index";
     }
 }
 
