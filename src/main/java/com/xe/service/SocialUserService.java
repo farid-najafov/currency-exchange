@@ -1,13 +1,14 @@
 package com.xe.service;
 
 import com.xe.entity.SocialUser;
+import com.xe.entity.User;
+import com.xe.entity.api.Exchange;
 import com.xe.exception.UserNotFoundException;
 import com.xe.repo.SocialRepo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -38,5 +39,9 @@ public class SocialUserService {
         return user.orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
-
+    public void addExchange(String email,String regId, Exchange ex) {
+        SocialUser user = findByEmailAndRegID(email, regId);
+        user.getExchanges().add(ex);
+        repo.save(user);
+    }
 }

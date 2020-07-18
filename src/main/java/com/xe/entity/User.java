@@ -38,7 +38,7 @@ public class User {
     @Size(min = 1)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "us_ex",
             joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
