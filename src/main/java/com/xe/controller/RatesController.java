@@ -1,16 +1,21 @@
 package com.xe.controller;
 
 import com.xe.entity.api.RateByPeriod;
+import com.xe.entity.sec_ent.XUserDetails;
 import com.xe.enums.XCurrency;
 import com.xe.exception.InvalidPeriodException;
 import com.xe.service.ExchangeService;
+import com.xe.service.UserService;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -24,8 +29,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/main-page-rates")
 public class RatesController {
     private final ExchangeService exchangeService;
-
-    public RatesController(ExchangeService exchangeService) {
+    public RatesController(ExchangeService exchangeService, UserService userService) {
         this.exchangeService = exchangeService;
     }
 
@@ -51,9 +55,11 @@ public class RatesController {
     }
 
     @GetMapping
-    public String get() {
+    public String get(Principal p, Model model) {
+
+        model.addAttribute("name", UserService.getUserNameFromPrincipal(p));
         log.info("GET -> /main-page-authorized ");
-        return  "main-page-rates";
+        return "main-page-rates";
     }
 
     @SneakyThrows
@@ -62,7 +68,8 @@ public class RatesController {
                                   @RequestParam("end_at") String end,
                                   @RequestParam("base") String base,
                                   @RequestParam("quote") String quote,
-                                  Model model) {
+                                  Model model,Principal p) {
+
 
         Date fmtS = parseDate(start);
         Date fmtE = parseDate(end);
@@ -77,6 +84,7 @@ public class RatesController {
         log.info(String.format("LIST OF RATES BY PERIOD %s", list));
 
         model.addAttribute("obj", list);
+        model.addAttribute("name", UserService.getUserNameFromPrincipal(p));
         return "rates";
     }
 

@@ -2,6 +2,7 @@ package com.xe.entity.sec_ent;
 
 import com.xe.entity.api.Exchange;
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,6 +25,8 @@ public class XUserDetails implements UserDetails {
 
     private  String[] roles;
 
+
+
     public XUserDetails(long id, String fullName, String password, String email, Collection<Exchange> exchanges, String[] roles) {
         this.id = id;
         this.fullName = fullName;
@@ -32,6 +35,7 @@ public class XUserDetails implements UserDetails {
         this.exchanges =exchanges;
         this.roles =roles;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

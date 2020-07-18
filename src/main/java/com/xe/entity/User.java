@@ -38,7 +38,7 @@ public class User {
     @Size(min = 1)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "us_ex",
             joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
@@ -55,6 +55,10 @@ public class User {
         this.exchanges = exchanges;
         this.roles ="USER";
     }
+    public User(String name, String mail) {
+        this.fullName = name;
+        this.email = mail;
+    }
 
     @Transient
     private final static String DELIMITER = ":";
@@ -65,6 +69,5 @@ public class User {
     }
 
     public void setRoles(String roles) {
-        this.roles = String.join(DELIMITER, roles);
-    }
+        this.roles = String.join(DELIMITER, roles); }
 }

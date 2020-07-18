@@ -1,19 +1,26 @@
 package com.xe.service;
 
+import com.xe.entity.SocialUser;
 import com.xe.entity.User;
 import com.xe.entity.api.Exchange;
+import com.xe.entity.sec_ent.XUserDetails;
 import com.xe.repo.UserRepository;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder enc;
 
+    private final PasswordEncoder enc;
 
     public UserService(UserRepository userRepository, PasswordEncoder enc) {
         this.userRepository = userRepository;
@@ -27,6 +34,7 @@ public class UserService {
         user.setRoles("USER");
         userRepository.save(user);
     }
+
 
     public void addExchange(String email, Exchange ex) {
         Optional<User> byEmail = userRepository.findByEmail(email);
@@ -43,4 +51,14 @@ public class UserService {
         userRepository.updatePassword(enc.encode(password), userId);
     }
 
+    public static String getUserNameFromPrincipal(Principal p) {
+        if (p instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken user = (OAuth2AuthenticationToken) p;
+            return user.getPrincipal().getAttribute("name");
+        } else {
+            UsernamePasswordAuthenticationToken user = (UsernamePasswordAuthenticationToken) p;
+            XUserDetails xUserDetails = (XUserDetails) user.getPrincipal();
+            return xUserDetails.getFullName();
+        }
+    }
 }

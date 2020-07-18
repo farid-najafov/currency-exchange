@@ -22,14 +22,14 @@
     <div class="main-header-wrapper">
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
-                <span class="main-header-username" th:text="${#authentication.getPrincipal().getFullName()}"></span>
+                <span class="main-header-username" th:text="${name}" ></span>
                 <div class="log-out-block">
                     <img alt="Log out" th:src="@{/img/log-out-icon.svg}">
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
             <div class="main-header-profile-credentials">
-                <span class="main-header-username"></span>
+                <span class="main-header-username" ></span>
                 <div class="log-out-block">
                     <a class="log-out-btn" th:href="@{/history}">History</a>
                 </div>
@@ -120,6 +120,7 @@
         type="text/javascript"></script>
 <script th:src="@{/js/currency-select.js}"></script>
 <script th:src="@{/js/date-select.js}"></script>
+
 </body>
 
 
