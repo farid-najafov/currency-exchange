@@ -63,7 +63,7 @@ public class MainPageAuthorizedController {
     }
 
     @GetMapping
-    public String get(Principal p, Model model) {
+    public String get(Principal p, Model model)  {
 
         if (p instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken user = (OAuth2AuthenticationToken) p;
@@ -85,6 +85,7 @@ public class MainPageAuthorizedController {
                                     Model md, Principal p) throws ParseException {
 
 
+
         LocalDate d = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(date)
                 .toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -99,6 +100,7 @@ public class MainPageAuthorizedController {
 
         ex.setAmount(Double.parseDouble(amount));
         ex.setResult(Double.parseDouble(df.format(calc)));
+
 
         if (p instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken user = (OAuth2AuthenticationToken) p;
