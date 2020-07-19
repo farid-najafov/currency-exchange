@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity(name = "exchanges")
@@ -43,18 +43,14 @@ public class Exchange {
     private Date date;
 
     @Column(name = "localDate")
-    private LocalDate localDate ;
+    private LocalDateTime ld;
 
     public Exchange(XCurrency base_ccy, XCurrency quote_ccy, Double rate, Date date) {
         this.base_ccy = base_ccy;
         this.quote_ccy = quote_ccy;
         this.rate = rate;
         this.date = date;
-        this.localDate  = LocalDate.now();
+        this.ld = LocalDateTime.now();
     }
 
-    public Exchange(double s) {
-        this.localDate  = LocalDate.now();
-        this.rate = s;
-    }
 }

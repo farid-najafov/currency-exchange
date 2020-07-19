@@ -3,6 +3,7 @@ package com.xe.controller;
 import com.xe.entity.api.Exchange;
 import com.xe.enums.XCurrency;
 import com.xe.service.ExchangeService;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,17 +18,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Value
 @Log4j2
 @Controller
 @RequestMapping("/main-page")
 public class MainPageController {
 
     private static final DecimalFormat df = new DecimalFormat("0.0000");
-    private final ExchangeService qService;
-
-    public MainPageController(ExchangeService qService) {
-        this.qService = qService;
-    }
+    ExchangeService qService;
 
     @ModelAttribute("currencies")
     public List<XCurrency> addCurrenciesToModel(Model model) {

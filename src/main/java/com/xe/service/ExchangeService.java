@@ -5,6 +5,7 @@ import com.xe.entity.api.RateByPeriod;
 import com.xe.entity.ext_api.QResponse;
 import com.xe.entity.ext_api.ResponseByPeriod;
 import com.xe.enums.XCurrency;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,15 +19,12 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Value
 @Service
 @Log4j2
 public class ExchangeService {
 
-    private final RestTemplate rest;
-
-    public ExchangeService(RestTemplate rest) {
-        this.rest = rest;
-    }
+    RestTemplate rest;
 
     public String dateToSt(Date date) {
         return new SimpleDateFormat("yyyy-MM-d").format(date);

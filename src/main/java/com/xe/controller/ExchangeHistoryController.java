@@ -1,9 +1,9 @@
 package com.xe.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.xe.entity.SocialUser;
 import com.xe.service.SocialUserService;
 import com.xe.service.UserService;
+import lombok.Value;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 
+@Value
 @Controller
 @RequestMapping("/history")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ExchangeHistoryController {
 
-    private final UserService userService;
-    private final SocialUserService socialUserService;
-
-    public ExchangeHistoryController(UserService userService, SocialUserService socialUserService) {
-        this.userService = userService;
-        this.socialUserService = socialUserService;
-    }
+    UserService userService;
+    SocialUserService socialUserService;
 
     @GetMapping
     public String get(Principal p, Model model) {

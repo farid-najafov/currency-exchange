@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface SocialRepo extends JpaRepository<SocialUser, Long> {
+public interface SocialUserRepository extends JpaRepository<SocialUser, Long> {
 
-    Optional<SocialUser> findByEmailAndAndRegId(String email, String regId);
+    Optional<SocialUser> findByEmailAndRegId(String email, String regId);
 
 }

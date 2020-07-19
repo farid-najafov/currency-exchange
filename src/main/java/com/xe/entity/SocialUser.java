@@ -16,10 +16,13 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SocialUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "sosialuser_id")
-    private long id;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "soc-user_ex",
+            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "soc-user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
+    )
+    Collection<Exchange> exchanges;
 
     @NonNull
     private String name;
@@ -29,11 +32,8 @@ public class SocialUser {
 
     @NonNull
     private String regId;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "sus_ex",
-            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "sosialuser_id")},
-            inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
-    )
-    Collection<Exchange> exchanges;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "soc-user_id")
+    private long id;
 }

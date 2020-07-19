@@ -24,6 +24,8 @@ public class PasswordResetToken {
     @Column(nullable = false)
     private Date expiryDate;
 
+    private boolean isUsed;
+
     public void setExpiryDate(int minutes) {
         Calendar now = Calendar.getInstance();
         now.add(Calendar.MINUTE, minutes);

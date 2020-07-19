@@ -2,6 +2,7 @@ package com.xe.controller;
 
 import com.xe.entity.User;
 import com.xe.service.UserService;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -14,16 +15,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.Optional;
 
+@Value
 @Log4j2
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
 
-    private final UserService userService;
-
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
-    }
+    UserService userService;
 
     @ModelAttribute("user")
     public User user() {
@@ -61,7 +59,7 @@ public class RegistrationController {
         ra.addFlashAttribute("success", "Registration is successful, please log in to continue");
         log.info("Successfully registered");
 
-        return "redirect:/index";
+        return "redirect:/login";
     }
 
 }

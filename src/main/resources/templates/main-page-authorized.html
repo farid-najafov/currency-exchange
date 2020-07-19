@@ -45,7 +45,6 @@
             Exchange money
         </h3>
         <a class="btn btn-danger" th:href="@{/main-page-rates}" type="button">Check historical rates</a>
-        <!--        <a th:href="@{/history}" type="button" class="btn btn-danger">Show user's exchange history</a>-->
 
         <form class="exchange-form" method="post">
 
@@ -65,7 +64,6 @@
                     </div>
                     <br>
                     <div class="exchange-result" id="exchange-from-result">
-                        <!--                            <span class="exchange-result-currency">$</span>-->
                         <input class="currency-input" name="amount" placeholder="0" th:value="${amount}"
                                type="text">
                     </div>
