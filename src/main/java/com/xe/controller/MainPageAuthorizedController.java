@@ -82,7 +82,8 @@ public class MainPageAuthorizedController {
                                     @RequestParam("single-date") String date,
                                     @RequestParam("base") String baseCcy,
                                     @RequestParam("quote") String quoteCcy,
-                                    Model md, Principal principal) throws ParseException {
+                                    Model md, Principal p) throws ParseException {
+
 
 
         LocalDate d = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(date)
@@ -100,7 +101,13 @@ public class MainPageAuthorizedController {
         ex.setAmount(Double.parseDouble(amount));
         ex.setResult(Double.parseDouble(df.format(calc)));
 
-        userService.addExchange(principal.getName(), ex);
+
+        if (p instanceof OAuth2AuthenticationToken) {
+            OAuth2AuthenticationToken user = (OAuth2AuthenticationToken) p;
+            socialUserService.addExchange(user.getPrincipal().getAttribute("email"), user.getAuthorizedClientRegistrationId(), ex);
+        } else {
+            userService.addExchange(p.getName(), ex);
+        }
 
         md.addAttribute("object", ex);
         md.addAttribute("amount", amount);
@@ -108,6 +115,7 @@ public class MainPageAuthorizedController {
         md.addAttribute("result", df.format(calc));
         md.addAttribute("left", df.format(ex.rate));
         md.addAttribute("right", df.format(1 / ex.rate));
+        md.addAttribute("name", UserService.getUserNameFromPrincipal(p));
 
         return "main-page-authorized";
     }
