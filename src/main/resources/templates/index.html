@@ -28,12 +28,10 @@
                 information by email address and password</p>
             <form method="post" class="login-section-container-form">
 
-                <!-- Place for messages: error, alert etc ... -->
                 <div class="form-group">
                     <div class="col-xs-15">
                         <div>
 
-                            <!-- Check for registration error -->
                             <div th:if="${loginError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
                                 <span th:text="${loginError}"></span>
                             </div>
@@ -47,10 +45,7 @@
                     <label for="email"></label>
                     <input class="login-section-container-form-input" id="email" placeholder="Email address"
                            type="email"
-                           th:name="email"  required autofocus="autofocus"
-                    >
-
-
+                           autofocus="autofocus" required th:name="email">
                 </div>
                 <div class="login-section-container-form-input-wrapper">
                     <img th:src="@{/img/lock-icon.svg}" alt="User Icon">

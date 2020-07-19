@@ -1,27 +1,23 @@
 package com.xe.service;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
 import com.xe.entity.Mail;
+import lombok.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 
+@Value
 @Service
 public class EmailService {
 
-    private final JavaMailSender mailSender;
-    private final SpringTemplateEngine templateEngine;
-
-    public EmailService(JavaMailSender mailSender, SpringTemplateEngine springTemplateEngine) {
-        this.mailSender = mailSender;
-        this.templateEngine = springTemplateEngine;
-    }
+    JavaMailSender mailSender;
+    SpringTemplateEngine templateEngine;
 
     public void sendEmail(Mail mail) {
         try {

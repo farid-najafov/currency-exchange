@@ -18,10 +18,12 @@ import java.util.Collection;
 @FieldMatch(first = "password", second = "matchingPassword", message = "Password fields must match")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private long id;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_ex",
+            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
+    )
+    Collection<Exchange> exchanges;
 
     @NotNull(message = "Full Name cannot be empty")
     @Size(min = 1)
@@ -37,13 +39,10 @@ public class User {
     @NotNull(message = "Email cannot be empty")
     @Size(min = 1)
     private String email;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "us_ex",
-            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
-    )
-    Collection<Exchange> exchanges;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private long id;
 
     private String roles;
 
@@ -53,21 +52,15 @@ public class User {
         this.email = mail;
         this.matchingPassword = matchingPassword;
         this.exchanges = exchanges;
-        this.roles ="USER";
+        this.roles = "USER";
     }
-    public User(String name, String mail) {
-        this.fullName = name;
-        this.email = mail;
-    }
-
-    @Transient
-    private final static String DELIMITER = ":";
 
     public String[] getRoles() {
         return roles == null || roles.isEmpty() ? new String[]{}
-                : roles.split(DELIMITER);
+                : roles.split(":");
     }
 
     public void setRoles(String roles) {
-        this.roles = String.join(DELIMITER, roles); }
+        this.roles = String.join(":", roles);
+    }
 }

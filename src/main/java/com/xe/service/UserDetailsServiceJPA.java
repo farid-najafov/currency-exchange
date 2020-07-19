@@ -36,5 +36,4 @@ public class UserDetailsServiceJPA implements UserDetailsService {
                 ));
     }
 
-
 }

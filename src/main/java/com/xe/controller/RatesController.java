@@ -1,15 +1,13 @@
 package com.xe.controller;
 
 import com.xe.entity.api.RateByPeriod;
-import com.xe.entity.sec_ent.XUserDetails;
 import com.xe.enums.XCurrency;
 import com.xe.exception.InvalidPeriodException;
 import com.xe.service.ExchangeService;
 import com.xe.service.UserService;
 import lombok.SneakyThrows;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +22,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Value
 @Log4j2
 @Controller
 @RequestMapping("/main-page-rates")
 public class RatesController {
-    private final ExchangeService exchangeService;
-    public RatesController(ExchangeService exchangeService, UserService userService) {
-        this.exchangeService = exchangeService;
-    }
+
+    ExchangeService exchangeService;
 
     public Date parseDate(String s) throws ParseException {
         return new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(s);
@@ -68,8 +65,7 @@ public class RatesController {
                                   @RequestParam("end_at") String end,
                                   @RequestParam("base") String base,
                                   @RequestParam("quote") String quote,
-                                  Model model,Principal p) {
-
+                                  Model model, Principal p) {
 
         Date fmtS = parseDate(start);
         Date fmtE = parseDate(end);

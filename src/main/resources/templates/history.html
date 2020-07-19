@@ -47,25 +47,12 @@
 					<tbody th:each="list : ${user.getExchanges()}">
 
 					<tr>
-						<td class="column1" th:text="${list.getBase_ccy()}">
-
-						</td>
-						<td class="column2" th:text="${list.getQuote_ccy()}">
-
-						</td>
-						<td class="column3" th:text="${list.getRate()}">
-
-						</td>
-						<td class="column4" th:text="${list.getAmount()}">
-
-						</td>
-						<td class="column5" th:text="${list.getResult()}">
-
-						</td>
-
-						<td class="column6" th:text="${list.getLocalDate()}">
-
-						</td>
+						<td class="column1" th:text="${list.getBase_ccy()}"></td>
+						<td class="column2" th:text="${list.getQuote_ccy()}"></td>
+						<td class="column3" th:text="${list.getRate()}"></td>
+						<td class="column4" th:text="${list.getAmount()}"></td>
+						<td class="column5" th:text="${list.getResult()}"></td>
+						<td class="column6" th:text="${#temporals.format(list.getLd(), 'yyyy-MM-dd HH:mm:ss')}"></td>
 					</tr>
 					</tbody>
 				</table>

@@ -7,17 +7,15 @@ import com.xe.exception.InvalidPeriodException;
 import com.xe.service.ExchangeService;
 import com.xe.service.SocialUserService;
 import com.xe.service.UserService;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
@@ -31,22 +29,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+@Value
 @Log4j2
 @Controller
 @RequestMapping("/main-page-authorized")
 public class MainPageAuthorizedController {
-    private final RestTemplate rest;
-    private final UserService userService;
-    private final ExchangeService exchangeService;
-    private final SocialUserService socialUserService;
-    private static final DecimalFormat df = new DecimalFormat("0.0000");
 
-    public MainPageAuthorizedController(RestTemplate rest, UserService userService, ExchangeService exchangeService, SocialUserService socialUserService) {
-        this.rest = rest;
-        this.userService = userService;
-        this.exchangeService = exchangeService;
-        this.socialUserService = socialUserService;
-    }
+    UserService userService;
+    ExchangeService exchangeService;
+    SocialUserService socialUserService;
+    private static final DecimalFormat df = new DecimalFormat("0.0000");
 
     @ModelAttribute("currencies")
     public List<XCurrency> addCurrenciesToModel(Model model) {
@@ -55,7 +47,6 @@ public class MainPageAuthorizedController {
         model.addAllAttributes(collect);
         return collect;
     }
-
 
     @ModelAttribute("object")
     public Exchange create() {
@@ -84,8 +75,6 @@ public class MainPageAuthorizedController {
                                     @RequestParam("quote") String quoteCcy,
                                     Model md, Principal p) throws ParseException {
 
-
-
         LocalDate d = new SimpleDateFormat("dd MMMM yyyy", Locale.US).parse(date)
                 .toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -100,7 +89,6 @@ public class MainPageAuthorizedController {
 
         ex.setAmount(Double.parseDouble(amount));
         ex.setResult(Double.parseDouble(df.format(calc)));
-
 
         if (p instanceof OAuth2AuthenticationToken) {
             OAuth2AuthenticationToken user = (OAuth2AuthenticationToken) p;
