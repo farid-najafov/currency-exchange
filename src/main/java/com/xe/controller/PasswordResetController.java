@@ -40,7 +40,9 @@ public class PasswordResetController {
         if (resetToken == null) {
             model.addAttribute("error", "Could not find password reset token.");
         } else if (resetToken.isExpired() || resetToken.isUsed()) {
+
             redirectAttributes.addFlashAttribute("err", "Link is expired or used, please request a new password");
+
             return "redirect:forgot-password";
         } else {
             model.addAttribute("token", resetToken.getToken());
