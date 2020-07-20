@@ -18,8 +18,9 @@ import java.util.Collection;
 public class SocialUser {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "soc-user_ex",
-            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "soc-user_id")},
+    @JoinTable(name = "soc_user_ex",
+            joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "soc_user_id")},
+
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
     )
     Collection<Exchange> exchanges;
@@ -34,6 +35,9 @@ public class SocialUser {
     private String regId;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "soc-user_id")
+    @Column(name = "soc_user_id")
     private long id;
+
+
+
 }

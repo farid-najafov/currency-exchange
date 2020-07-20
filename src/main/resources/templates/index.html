@@ -24,8 +24,10 @@
                 <span th:text="${success}"></span>
             </div>
 
-            <p class="login-section-container-description">To keep connected with us please login with personal
+            <p class="login-section-container-description" style="margin-bottom: 0">To keep connected with us please
+                login with personal
                 information by email address and password</p>
+            <a class="btn btn-danger" href="/" type="button">Back to Home Page</a>
             <form method="post" class="login-section-container-form">
 
                 <div class="form-group">
@@ -72,7 +74,7 @@
 
                 </div>
 
-                <a href="/" type="button" class="btn btn-secondary" >Return Info Page</a>
+
                 <div class="login-section-form-social">
                     <div class="login-section-form-social-description-wrapper">
                         <hr class="login-section-form-social-description-line">
@@ -84,10 +86,6 @@
                                                                                 alt="Google Plus"></a>
                         <a th:href="@{/oauth2/authorization/facebook}" class="login-section-form-social-icon"><img th:src="@{/img/facebook.svg}"
                                                                                 alt="Facebook"></a>
-                        <a th:href="@{/oauth2/authorization/linkedIn}" class="login-section-form-social-icon"><img th:src="@{/img/linked-in.svg}"
-                                                                                alt="Linked In"></a>
-                        <a th:href="@{/oauth2/authorization/github}" class="login-section-form-social-icon mr0"><img th:src="@{/img/twitter.svg}"
-                                                                                    alt="Twitter"></a>
                     </div>
                 </div>
             </form>
