@@ -15,16 +15,21 @@
     <a th:href="@{main-page-authorized}" class="main-header-logo"><img th:src="@{/img/iba-tech-logo-white.svg}"
                                                                  alt="IBA Tech Academy"></a>
     <div class="main-header-wrapper" >
+        <span class="main-header-username" style="margin-right: 7px; color: white; font-size: medium"
+              th:text="${name}"></span>
         <div class="main-header-profile-wrapper">
             <div class="main-header-profile-credentials">
-                <span class="main-header-username" th:text="${name}"></span>
+
                 <div class="log-out-block">
                     <img th:src="@{/img/log-out-icon.svg}" alt="Log out">
                     <a class="log-out-btn" th:href="@{/logout}">Log out</a>
                 </div>
             </div>
-            <a th:href="@{/history}"><img alt="User Icon" class="main-header-user-icon"
-                                          th:src="@{/img/user-icon-with-background.svg}"></a>
+            <div class="main-header-profile-credentials">
+                <div class="log-out-block">
+                    <a class="log-out-btn" th:href="@{/history}">History</a>
+                </div>
+            </div>
         </div>
     </div>
 </header>
