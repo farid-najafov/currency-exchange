@@ -10,7 +10,7 @@
 - User can sign up with personal email or login with social websites
 
 - App is deployed to cloud platform heroku. 
-[Link to deployed version](https://calm-savannah-70817.herokuapp.com/)
+- [Link to deployed version](https://calm-savannah-70817.herokuapp.com/)
 
 - Useful commands:
  - mvn clean - deletes the /target folder
