@@ -20,7 +20,6 @@ public class SocialUser {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "soc_user_ex",
             joinColumns = {@JoinColumn(name = "us_id", referencedColumnName = "soc_user_id")},
-
             inverseJoinColumns = {@JoinColumn(name = "ex_id", referencedColumnName = "exchange_id")}
     )
     Collection<Exchange> exchanges;
@@ -37,7 +36,6 @@ public class SocialUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "soc_user_id")
     private long id;
-
 
 
 }
